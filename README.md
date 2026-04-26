@@ -20,24 +20,6 @@ yha-website/
 
 ---
 
-##  How to Run in VS Code (Zero Installation Required)
-
-### Option A — Quickest (Live Server Extension)
-1. Open VS Code
-2. Install the **"Live Server"** extension by Ritwick Dey (one-time, free)
-3. Open the `yha-website` folder in VS Code
-4. Right-click `index.html` → **"Open with Live Server"**
-5. The site opens in your browser automatically ✅
-
-### Option B — Without any extension
-1. Open the `yha-website` folder
-2. Double-click `index.html` to open it directly in your browser
-3. Navigate between pages using the navbar links ✅
-
-> No npm, no Node.js, no build tools, no framework — just open and run.
-
----
-
 ##  Pages
 
 | File | Page | Description |
