@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About Us — YHA Young Humanitarians in Action</title>
+  <meta name="description" content="Learn about Young Humanitarians in Action — our mission, our team, and the work we do to transform Nairobi's most vulnerable communities." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600;1,700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link rel="stylesheet" href="styles.css" />
+
+  <style>
+    /* ── ABOUT-PAGE SPECIFIC STYLES ──────────────── */
+    .about-split {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+    .about-split--reverse { direction: rtl; }
+    .about-split--reverse > * { direction: ltr; }
+
+    .about-split__text > *   { max-width: 520px; }
+    .about-split__text p + p { margin-top: 20px; }
+
+    .about-split__img { border-radius: 14px; overflow: hidden; }
+
+    .mission-box {
+      background: var(--white);
+      border: 2px solid var(--g-pale);
+      border-radius: 12px;
+      padding: 36px 32px;
+      position: relative;
+      overflow: hidden;
+      transition: var(--t);
+    }
+    .mission-box:hover { border-color: var(--g-bright); box-shadow: var(--sh-md); }
+    .mission-box::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 4px;
+      background: var(--g-bright);
+    }
+    .mission-box__icon {
+      font-size: 2rem;
+      color: var(--g-mid);
+      margin-bottom: 16px;
+    }
+    .mission-box__title { font-size: 1.1rem; margin-bottom: 10px; }
+    .mission-box__text  { font-size: .93rem; color: var(--text-soft); line-height: 1.8; }
+
+    .work-section { padding: 100px 0; }
+
+    .work-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--g-softest);
+      border: 1px solid var(--g-pale);
+      border-radius: 100px;
+      padding: 6px 16px;
+      font-size: .75rem;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--g-mid);
+      margin-bottom: 20px;
+    }
+
+    .work-feature-list { list-style: none; margin-top: 24px; }
+    .work-feature-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      padding: 14px 0;
+      border-bottom: 1px solid var(--g-softest);
+      font-size: .97rem;
+      color: var(--text-mid);
+    }
+    .work-feature-list li:last-child { border-bottom: none; }
+    .work-feature-list li i {
+      color: var(--g-bright);
+      font-size: .85rem;
+      margin-top: 4px;
+      flex-shrink: 0;
+    }
+
+    .team-section { background: var(--cream); padding: 100px 0; }
+
+    .value-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0;
+    }
+    .value-grid .value-item {
+      border-right: 1px solid rgba(255,255,255,.1);
+      border-bottom: 1px solid rgba(255,255,255,.1);
+    }
+    .value-grid .value-item:nth-child(3n) { border-right: none; }
+    .value-grid .value-item:nth-child(n+4) { border-bottom: none; }
+
+    .pullquote {
+      background: var(--g-dark);
+      padding: 60px;
+      border-radius: 14px;
+      text-align: center;
+      margin: 60px 0;
+    }
+    .pullquote__text {
+      font-family: var(--ff-display);
+      font-size: clamp(1.2rem, 2.5vw, 2rem);
+      font-style: italic;
+      font-weight: 600;
+      color: var(--white);
+      line-height: 1.55;
+      margin-bottom: 16px;
+    }
+    .pullquote__source {
+      font-size: .82rem;
+      font-weight: 700;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--g-light);
+    }
+
+    @media (max-width: 1024px) {
+      .about-split { grid-template-columns: 1fr; gap: 48px; }
+      .about-split--reverse { direction: ltr; }
+      .about-split--reverse .about-split__img { order: -1; }
+      .about-split__text > * { max-width: 100%; }
+      .value-grid { grid-template-columns: 1fr 1fr; }
+      .value-grid .value-item:nth-child(2n) { border-right: none; }
+      .value-grid .value-item:nth-child(3n) { border-right: revert; }
+      .pullquote { padding: 40px 28px; }
+    }
+    @media (max-width: 768px) {
+      .value-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ═══════════════════════════════ NAVIGATION ══ -->
+  <nav class="nav" role="navigation">
+    <div class="nav__inner">
+      <a href="index.html" class="nav__logo">
+        <img src="assets/logo.png" alt="YHA Logo" class="nav__logo-img"
+             onerror="this.style.display='none'" />
+        <span class="nav__logo-name">YHA</span>
+      </a>
+      <ul class="nav__menu" role="list">
+        <li><a href="index.html"  class="nav__link">Home</a></li>
+        <li><a href="about.html"  class="nav__link active">About Us</a></li>
+        <li><a href="impact.html" class="nav__link">Our Impact</a></li>
+        <li><a href="donate.html" class="nav__donate">Donate</a></li>
+      </ul>
+      <button class="nav__hamburger" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ═══════════════════════════════ PAGE HERO ════ -->
+  <section class="page-hero">
+    <div class="container">
+      <div class="page-hero__content">
+        <div class="page-hero__bread">
+          <a href="index.html">Home</a>
+          <span>/</span>
+          <span>About Us</span>
+        </div>
+        <span class="section-eyebrow">About Us</span>
+        <h1 class="page-hero__title">Young People.<br />Real Purpose.</h1>
+        <p class="page-hero__sub">
+          We are Young Humanitarians in Action — a grassroots movement of young Kenyans
+          committed to environmental conservation, community upliftment, and the stubborn
+          belief that ordinary people can do extraordinary things.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════ WHO WE ARE ═══ -->
+  <section class="section" id="who">
+    <div class="container">
+      <div class="about-split">
+        <div class="about-split__text reveal-left">
+          <span class="section-eyebrow">Who We Are</span>
+          <h2 class="section-title">Born in Nairobi.<br />Built for the Community.</h2>
+          <div class="divider"></div>
+          <p>
+            Young Humanitarians in Action — known simply as YHA — is a community-led organisation
+            founded on the premise that social change does not require wealth, seniority, or
+            institutional backing. It requires only the determination to show up and do the work.
+          </p>
+          <p>
+            We are a collective of young Nairobians: students, professionals, tradespeople, and
+            neighbours who share a single conviction — that the state of our communities is not fixed.
+            The polluted rivers can be cleaned. The blocked drains can be unclogged. The hungry
+            children in homes across the city can be fed. And none of it requires waiting for
+            someone else to act.
+          </p>
+          <p>
+            YHA grew out of the simple frustration of watching problems that are entirely solvable
+            go unsolved because no one with authority seemed to care enough to solve them. So we
+            decided to care. We decided to act. And what began as a small circle of committed young
+            people has grown into a movement that touches lives every single week — in the
+            settlements of Nairobi's most neglected neighbourhoods, in the children's homes that
+            rely on kindness to function, and in the classrooms where the next generation is
+            learning whether or not their environment matters.
+          </p>
+          <p>
+            We are proud to be Kenyan. We are proud to be young. And we are proud to do this work.
+          </p>
+        </div>
+        <div class="about-split__img reveal-right">
+          <div class="img-ph" style="min-height:480px;">
+            <div class="img-ph__icon"><i class="fa-solid fa-camera"></i></div>
+            <div class="img-ph__label">Photo: YHA Team at a Community Clean-Up</div>
+            <div class="img-ph__sub">Replace with actual team photo</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════ MISSION / VISION ══ -->
+  <section class="section section--cream">
+    <div class="container">
+      <div class="text-center reveal" style="margin-bottom:60px;">
+        <span class="section-eyebrow">Our Foundation</span>
+        <h2 class="section-title">What Drives Us</h2>
+        <p class="section-lead">
+          Behind everything YHA does are three anchoring commitments —
+          a mission we pursue daily, a vision we are building towards, and a purpose that
+          makes every moment of effort worthwhile.
+        </p>
+      </div>
+      <div class="three-col">
+        <div class="mission-box reveal delay-1">
+          <div class="mission-box__icon"><i class="fa-solid fa-bullseye"></i></div>
+          <h3 class="mission-box__title">Our Mission</h3>
+          <p class="mission-box__text">
+            To improve living conditions in underserved communities in Nairobi and beyond
+            through direct environmental action, charitable outreach, and sustained
+            community education — using the energy, creativity, and commitment of young people
+            as our primary resource.
+          </p>
+        </div>
+        <div class="mission-box reveal delay-2">
+          <div class="mission-box__icon"><i class="fa-solid fa-eye"></i></div>
+          <h3 class="mission-box__title">Our Vision</h3>
+          <p class="mission-box__text">
+            A Kenya where every community — regardless of income, location, or political
+            visibility — lives in a clean, healthy, and dignified environment; where no child
+            goes to bed hungry; and where the next generation inherits a country they are
+            proud to inhabit.
+          </p>
+        </div>
+        <div class="mission-box reveal delay-3">
+          <div class="mission-box__icon"><i class="fa-solid fa-heart"></i></div>
+          <h3 class="mission-box__title">Our Purpose</h3>
+          <p class="mission-box__text">
+            To prove — through consistent, visible, measurable action — that young people
+            are not the leaders of tomorrow. We are the leaders of today. And today, we choose
+            to make our world a little bit cleaner, a little bit kinder, and a little bit
+            more just than it was yesterday.
+          </p>
+        </div>
+      </div>
+
+      <div class="pullquote reveal">
+        <p class="pullquote__text">
+          "We do not have the luxury of waiting. The floods come every year.
+          The children go hungry every day. The drains are blocked right now.
+          So we act — right now, with what we have, where we are."
+        </p>
+        <div class="pullquote__source">— YHA, Founding Principles</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════ ENVIRONMENTAL WORK ══ -->
+  <section class="work-section section" id="environment">
+    <div class="container">
+      <div class="about-split">
+        <div class="about-split__img reveal-left">
+          <div class="img-ph" style="min-height:500px;">
+            <div class="img-ph__icon"><i class="fa-solid fa-camera"></i></div>
+            <div class="img-ph__label">Photo: YHA volunteers during a community clean-up day in Mathare</div>
+            <div class="img-ph__sub">Replace with actual clean-up photo</div>
+          </div>
+        </div>
+        <div class="about-split__text reveal-right">
+          <div class="work-tag"><i class="fa-solid fa-leaf"></i> Pillar One</div>
+          <h2 class="section-title">Environmental Service &amp; Clean-Up Days</h2>
+          <div class="divider"></div>
+          <p>
+            The relationship between environmental pollution and human suffering in Nairobi is direct
+            and lethal. Polythene bags and litter blocking storm drains turn ordinary rainfall into
+            flash floods that kill people and destroy livelihoods. Garbage piling in open spaces
+            in informal settlements breeds disease. Open sewage mixed with standing waste water
+            is a cholera outbreak waiting to happen.
+          </p>
+          <p>
+            YHA responds to this reality with the oldest, most effective environmental tool
+            available to any community: showing up and cleaning. We organise regular
+            community clean-up days in Nairobi's informal settlements and underserved
+            neighbourhoods — mobilising volunteers, providing equipment, coordinating with
+            local waste collection, and physically clearing the rubbish, litter, and plastic
+            that formal systems leave behind.
+          </p>
+          <p>
+            Our clean-up operations focus especially on storm drain clearance — the most
+            directly life-saving work we do. A clear drain means a flood that doesn't happen.
+            A flood that doesn't happen means a family that stays in their home, a child who
+            doesn't drown, a business that doesn't lose everything overnight.
+          </p>
+          <ul class="work-feature-list">
+            <li><i class="fa-solid fa-check"></i> Community clean-up days in targeted settlements, organised monthly</li>
+            <li><i class="fa-solid fa-check"></i> Storm drain clearing and plastic waste extraction</li>
+            <li><i class="fa-solid fa-check"></i> River and waterway debris removal in Nairobi catchment areas</li>
+            <li><i class="fa-solid fa-check"></i> Coordination with informal waste collectors and recyclers</li>
+            <li><i class="fa-solid fa-check"></i> Tree planting in degraded public spaces</li>
+            <li><i class="fa-solid fa-check"></i> Environmental audits of targeted communities before and after</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════ CHARITY WORK ══ -->
+  <section class="work-section section section--cream" id="charity">
+    <div class="container">
+      <div class="about-split about-split--reverse">
+        <div class="about-split__text reveal-left">
+          <div class="work-tag"><i class="fa-solid fa-hand-holding-heart"></i> Pillar Two</div>
+          <h2 class="section-title">Charity Work &amp; Children's Home Outreach</h2>
+          <div class="divider"></div>
+          <p>
+            Across Nairobi, there are hundreds of children living in homes and shelters that
+            survive on goodwill, private donations, and the extraordinary dedication of underpaid
+            caretakers. These homes receive minimal government support. Many of the children in
+            them have known nothing but loss: lost parents, lost homes, lost childhoods cut short
+            by circumstance. What they have not lost — what they deserve to keep — is hope.
+          </p>
+          <p>
+            YHA's charity outreach programme visits children's homes across Nairobi on a
+            regular basis, bringing with us food staples, clothing, school supplies, hygiene
+            products, and the simple human warmth of a community that sees them and cares.
+            We believe that charity, done right, is not about pity. It is about dignity.
+            It is about saying to another human being: you matter, and we are here.
+          </p>
+          <p>
+            Beyond children's homes, our outreach extends to vulnerable families within the
+            informal settlements we work in — elderly community members living alone, families
+            recovering from flood damage, parents trying to feed children through periods of
+            extreme hardship. We respond to need wherever we find it. We do not require
+            applications, proof of poverty, or bureaucratic processes. We show up, we listen,
+            and we help.
+          </p>
+          <ul class="work-feature-list">
+            <li><i class="fa-solid fa-check"></i> Regular donation drives to children's homes in Nairobi</li>
+            <li><i class="fa-solid fa-check"></i> Food packages: staples, fresh produce, and nutritional supplies</li>
+            <li><i class="fa-solid fa-check"></i> School supplies: exercise books, pens, uniforms, school shoes</li>
+            <li><i class="fa-solid fa-check"></i> Hygiene and sanitation kits for children and families</li>
+            <li><i class="fa-solid fa-check"></i> Clothing and bedding donations, sourced from community drives</li>
+            <li><i class="fa-solid fa-check"></i> Recreational activities and morale-building visits</li>
+            <li><i class="fa-solid fa-check"></i> Emergency response to families displaced by floods or fires</li>
+          </ul>
+        </div>
+        <div class="about-split__img reveal-right">
+          <div class="img-ph" style="min-height:500px;">
+            <div class="img-ph__icon"><i class="fa-solid fa-camera"></i></div>
+            <div class="img-ph__label">Photo: YHA volunteers donating supplies at a children's home in Nairobi</div>
+            <div class="img-ph__sub">Replace with actual outreach photo</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════ EDUCATION ════ -->
+  <section class="work-section section" id="education">
+    <div class="container">
+      <div class="about-split">
+        <div class="about-split__img reveal-left">
+          <div class="img-ph" style="min-height:500px;">
+            <div class="img-ph__icon"><i class="fa-solid fa-camera"></i></div>
+            <div class="img-ph__label">Photo: YHA community education session with children in Kibera</div>
+            <div class="img-ph__sub">Replace with actual education session photo</div>
+          </div>
+        </div>
+        <div class="about-split__text reveal-right">
+          <div class="work-tag"><i class="fa-solid fa-chalkboard-user"></i> Pillar Three</div>
+          <h2 class="section-title">Community Education &amp; Environmental Awareness</h2>
+          <div class="divider"></div>
+          <p>
+            Cleaning a street matters deeply. But unless the people who live on that street
+            understand <em>why</em> it matters — and choose, from knowledge and conviction,
+            not to litter — the street will return to its previous state within weeks.
+            Sustainable environmental change requires changing minds, not just clearing rubbish.
+          </p>
+          <p>
+            YHA's community education programme takes us into schools, community centres, and
+            open community spaces within Nairobi's informal settlements — specifically targeting
+            children and young people, because they are both the most impressionable and the
+            most powerful agents of change. A child who learns that throwing plastic into a
+            river causes floods will grow up as an adult who doesn't throw plastic into rivers.
+            That is generational impact.
+          </p>
+          <p>
+            Our education sessions cover the basics of waste management, the relationship
+            between pollution and health, the science of how blocked drains cause flooding, and
+            the profound difference that individual behaviour makes at a community scale. We make
+            these sessions interactive, engaging, and age-appropriate — because information that
+            bores doesn't change behaviour, and we are in the business of behaviour change.
+          </p>
+          <ul class="work-feature-list">
+            <li><i class="fa-solid fa-check"></i> Environmental education sessions in schools in Kibera, Mathare, Mukuru and beyond</li>
+            <li><i class="fa-solid fa-check"></i> Interactive waste-sorting and recycling workshops for children</li>
+            <li><i class="fa-solid fa-check"></i> Community awareness campaigns: posters, local radio, social media</li>
+            <li><i class="fa-solid fa-check"></i> "Clean Street Challenge" — youth-led community competitions</li>
+            <li><i class="fa-solid fa-check"></i> Training community youth leaders as environmental ambassadors</li>
+            <li><i class="fa-solid fa-check"></i> Partnership with local schools to embed environmental stewardship in curriculum</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════ VALUES ════════ -->
+  <section class="section section--green">
+    <div class="container">
+      <div class="text-center reveal" style="margin-bottom:60px;">
+        <span class="section-eyebrow" style="color:var(--g-light)">What We Stand For</span>
+        <h2 class="section-title" style="color:var(--white)">Our Core Values</h2>
+        <p class="section-lead">
+          Everything YHA does is rooted in a set of values that are not aspirational —
+          they are operational. They shape how we work, who we serve, and how we treat the people we meet.
+        </p>
+      </div>
+      <div class="value-grid">
+        <div class="value-item reveal delay-1">
+          <div class="value-item__icon"><i class="fa-solid fa-hands-holding-circle"></i></div>
+          <h4 class="value-item__title">Community First</h4>
+          <p class="value-item__text">
+            Every decision we make is filtered through a single question: does this serve the
+            community? We exist for the people we work among, not the other way around.
+            Their needs, dignity, and voice come before everything else.
+          </p>
+        </div>
+        <div class="value-item reveal delay-2">
+          <div class="value-item__icon"><i class="fa-solid fa-person-digging"></i></div>
+          <h4 class="value-item__title">Action Over Words</h4>
+          <p class="value-item__text">
+            We are allergic to meetings that produce nothing. YHA is, at its core, a doing
+            organisation. We believe in showing up, getting our hands dirty, and measuring
+            ourselves by what we have actually changed — not what we have discussed changing.
+          </p>
+        </div>
+        <div class="value-item reveal delay-3">
+          <div class="value-item__icon"><i class="fa-solid fa-scale-balanced"></i></div>
+          <h4 class="value-item__title">Dignity Always</h4>
+          <p class="value-item__text">
+            We give, but we never condescend. We help, but we never pity. Every person we
+            serve — child, elder, or family — is treated with the full respect and dignity
+            that every human being deserves unconditionally.
+          </p>
+        </div>
+        <div class="value-item reveal delay-1">
+          <div class="value-item__icon"><i class="fa-solid fa-seedling"></i></div>
+          <h4 class="value-item__title">Environmental Stewardship</h4>
+          <p class="value-item__text">
+            We love this earth. We believe it is both our inheritance and our responsibility.
+            Every piece of litter we collect, every drain we clear, every tree we plant is an
+            act of love for the planet we share with 8 billion other people.
+          </p>
+        </div>
+        <div class="value-item reveal delay-2">
+          <div class="value-item__icon"><i class="fa-solid fa-lightbulb"></i></div>
+          <h4 class="value-item__title">Youth-Led Innovation</h4>
+          <p class="value-item__text">
+            Young people are not a demographic to be patronised — we are a force to be
+            reckoned with. YHA is proudly youth-led, and we bring the energy, creativity,
+            and lateral thinking of our generation to every problem we face.
+          </p>
+        </div>
+        <div class="value-item reveal delay-3">
+          <div class="value-item__icon"><i class="fa-solid fa-handshake"></i></div>
+          <h4 class="value-item__title">Radical Accountability</h4>
+          <p class="value-item__text">
+            We are accountable to the communities we serve, to our donors, and to ourselves.
+            We document our work. We measure our impact. We report honestly — including on
+            what doesn't work — because trust is the foundation of everything we do.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════ STATS ════════ -->
+  <div class="stat-bar">
+    <div class="container">
+      <div class="stat-bar__grid">
+        <div class="stat-bar__item">
+          <span class="stat-bar__num" data-target="20" data-suffix="+">0+</span>
+          <span class="stat-bar__label">Community Clean-Ups Completed</span>
+        </div>
+        <div class="stat-bar__item">
+          <span class="stat-bar__num" data-target="15" data-suffix="+">0+</span>
+          <span class="stat-bar__label">Children's Homes Visited</span>
+        </div>
+        <div class="stat-bar__item">
+          <span class="stat-bar__num" data-target="500" data-suffix="+">0+</span>
+          <span class="stat-bar__label">Children Directly Reached</span>
+        </div>
+        <div class="stat-bar__item">
+          <span class="stat-bar__num" data-target="100" data-suffix="%">0%</span>
+          <span class="stat-bar__label">Volunteer-Powered</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════ TEAM ═════════ -->
+  <section class="team-section" id="team">
+    <div class="container">
+      <div class="text-center reveal" style="margin-bottom:60px;">
+        <span class="section-eyebrow">The People Behind the Work</span>
+        <h2 class="section-title">Our Team</h2>
+        <p class="section-lead">
+          YHA is powered by a dedicated team of young volunteers who give their time, energy,
+          and passion to this work without reservation. These are the faces behind the mission.
+        </p>
+      </div>
+      <div class="four-col">
+        <div class="team-card reveal delay-1">
+          <div class="img-ph team-card__img">
+            <div class="img-ph__icon"><i class="fa-solid fa-user"></i></div>
+            <div class="img-ph__label">Team Member Photo</div>
+          </div>
+          <h4 class="team-card__name">[Name Placeholder]</h4>
+          <div class="team-card__role">Founder &amp; Director</div>
+        </div>
+        <div class="team-card reveal delay-2">
+          <div class="img-ph team-card__img">
+            <div class="img-ph__icon"><i class="fa-solid fa-user"></i></div>
+            <div class="img-ph__label">Team Member Photo</div>
+          </div>
+          <h4 class="team-card__name">[Name Placeholder]</h4>
+          <div class="team-card__role">Operations Lead</div>
+        </div>
+        <div class="team-card reveal delay-3">
+          <div class="img-ph team-card__img">
+            <div class="img-ph__icon"><i class="fa-solid fa-user"></i></div>
+            <div class="img-ph__label">Team Member Photo</div>
+          </div>
+          <h4 class="team-card__name">[Name Placeholder]</h4>
+          <div class="team-card__role">Community Outreach</div>
+        </div>
+        <div class="team-card reveal delay-4">
+          <div class="img-ph team-card__img">
+            <div class="img-ph__icon"><i class="fa-solid fa-user"></i></div>
+            <div class="img-ph__label">Team Member Photo</div>
+          </div>
+          <h4 class="team-card__name">[Name Placeholder]</h4>
+          <div class="team-card__role">Education Programme</div>
+        </div>
+      </div>
+      <div style="text-align:center;margin-top:60px;" class="reveal">
+        <p style="font-size:1rem;color:var(--text-soft);margin-bottom:28px;">
+          Want to be part of this team? We are always looking for committed young people
+          to join us as volunteers, community coordinators, and advocates.
+        </p>
+        <a href="index.html#contact" class="btn btn--primary btn--lg">
+          <i class="fa-solid fa-user-plus"></i> Get Involved
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════ CTA BANNER ════ -->
+  <section class="cta-banner">
+    <div class="container">
+      <div class="cta-banner__inner reveal">
+        <span class="section-eyebrow" style="color:var(--g-light)">Make It Possible</span>
+        <h2 class="cta-banner__title">Our Work Runs on Generosity</h2>
+        <p class="cta-banner__text">
+          Every cleaning day, every food donation, every education session is funded entirely
+          by people who believe in this work. Your contribution — however large or small —
+          keeps us going. And it reaches people who need it, directly, with no middleman.
+        </p>
+        <div class="cta-banner__btns">
+          <a href="donate.html" class="btn btn--white btn--lg">
+            <i class="fa-solid fa-heart"></i> Support Our Work
+          </a>
+          <a href="impact.html" class="btn btn--white-outline btn--lg">
+            See What Your Support Does <i class="fa-solid fa-arrow-right"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════ FOOTER ════════ -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__grid">
+        <div class="footer__brand">
+          <div class="footer__logo">
+            <img src="assets/logo.png" alt="YHA" class="footer__logo-img"
+                 onerror="this.style.display='none'" />
+            <span class="footer__logo-name">YHA</span>
+          </div>
+          <p class="footer__tagline">
+            Young Humanitarians in Action. Nairobi-based, community-driven, and committed
+            to building a cleaner, kinder world — one street, one family, one cleaned drain at a time.
+          </p>
+          <div class="footer__social">
+            <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="#" aria-label="Twitter / X"><i class="fa-brands fa-x-twitter"></i></a>
+            <a href="#" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+          </div>
+        </div>
+        <div class="footer__col">
+          <h4>Navigate</h4>
+          <ul class="footer__links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="impact.html">Our Impact</a></li>
+            <li><a href="donate.html">Donate</a></li>
+            <li><a href="index.html#contact">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer__col">
+          <h4>What We Do</h4>
+          <ul class="footer__links">
+            <li><a href="#environment">Environmental Clean-Ups</a></li>
+            <li><a href="#charity">Charity & Outreach</a></li>
+            <li><a href="#education">Community Education</a></li>
+            <li><a href="impact.html">Stories of Impact</a></li>
+          </ul>
+        </div>
+        <div class="footer__col">
+          <h4>Contact Us</h4>
+          <div class="footer__contact-item">
+            <i class="fa-solid fa-location-dot"></i>
+            <span>Nairobi, Kenya<br />[Address Placeholder]</span>
+          </div>
+          <div class="footer__contact-item">
+            <i class="fa-solid fa-phone"></i>
+            <span>+254 700 000 000 [Placeholder]</span>
+          </div>
+          <div class="footer__contact-item">
+            <i class="fa-solid fa-envelope"></i>
+            <span>hello@younghumanitarians.org</span>
+          </div>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <span>&copy; 2025 Young Humanitarians in Action. All rights reserved.</span>
+        <span>Made with <span style="color:var(--g-light)">&#9829;</span> in Nairobi, Kenya</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

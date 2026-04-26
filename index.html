@@ -1,0 +1,877 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>YHA — Young Humanitarians in Action</title>
+  <meta name="description" content="Young Humanitarians in Action — cleaning Nairobi's streets, uplifting children's homes, and building a better world for our communities." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600;1,700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link rel="stylesheet" href="styles.css" />
+
+  <style>
+    /* ── HOME-SPECIFIC STYLES ─────────────────────── */
+    .hero {
+      min-height: 100vh;
+      background: linear-gradient(155deg, var(--g-darkest) 0%, var(--g-dark) 55%, var(--g-mid) 100%);
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+      padding-top: var(--nav-h);
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      right: -100px; top: 50%;
+      transform: translateY(-50%) translateY(var(--parallax-y, 0));
+      width: 680px; height: 680px;
+      border-radius: 50%;
+      border: 90px solid rgba(46,170,84,.07);
+      pointer-events: none;
+      transition: transform .1s linear;
+    }
+    .hero::after {
+      content: '';
+      position: absolute;
+      right: 60px; top: 50%;
+      transform: translateY(-50%) translateY(var(--parallax-y, 0));
+      width: 400px; height: 400px;
+      border-radius: 50%;
+      border: 50px solid rgba(46,170,84,.05);
+      pointer-events: none;
+    }
+    .hero__inner {
+      position: relative; z-index: 1;
+      max-width: 780px;
+    }
+    .hero__badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(46,170,84,.15);
+      border: 1px solid rgba(46,170,84,.3);
+      border-radius: 100px;
+      padding: 8px 20px;
+      font-size: .8rem;
+      font-weight: 600;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--g-light);
+      margin-bottom: 28px;
+    }
+    .hero__badge-dot {
+      width: 8px; height: 8px;
+      background: var(--g-light);
+      border-radius: 50%;
+      animation: pulse 2s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50%       { opacity: .5; transform: scale(.7); }
+    }
+    .hero__eyebrow {
+      font-family: var(--ff-display);
+      font-size: clamp(4rem, 10vw, 8rem);
+      font-weight: 700;
+      color: var(--white);
+      line-height: .9;
+      margin-bottom: 10px;
+      display: block;
+      letter-spacing: -.02em;
+    }
+    .hero__title {
+      color: var(--white);
+      margin-bottom: 24px;
+      font-size: clamp(1.6rem, 3.5vw, 2.8rem);
+    }
+    .hero__title span { color: var(--g-light); }
+    .hero__subtitle {
+      font-size: 1.1rem;
+      color: rgba(255,255,255,.72);
+      line-height: 1.9;
+      max-width: 580px;
+      margin-bottom: 44px;
+    }
+    .hero__ctas { display: flex; gap: 16px; flex-wrap: wrap; }
+
+    .hero__scroll {
+      position: absolute;
+      bottom: 40px; left: 50%;
+      transform: translateX(-50%);
+      display: flex; flex-direction: column; align-items: center; gap: 8px;
+      color: rgba(255,255,255,.35);
+      font-size: .75rem;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      z-index: 1;
+    }
+    .hero__scroll-bar {
+      width: 2px; height: 50px;
+      background: rgba(255,255,255,.15);
+      position: relative; overflow: hidden;
+      border-radius: 2px;
+    }
+    .hero__scroll-bar::after {
+      content: '';
+      position: absolute;
+      top: -50%; left: 0; right: 0;
+      height: 50%;
+      background: var(--g-light);
+      animation: scrollBar 1.8s ease-in-out infinite;
+    }
+    @keyframes scrollBar {
+      0%   { top: -50%; }
+      100% { top: 150%; }
+    }
+
+    /* Story section */
+    .story-section { padding: 120px 0; }
+    .story-block {
+      background: var(--cream);
+      border-radius: 14px;
+      padding: 70px 80px;
+      position: relative;
+      overflow: hidden;
+    }
+    .story-block::before {
+      content: '\201C';
+      position: absolute;
+      top: -20px; left: 40px;
+      font-family: var(--ff-display);
+      font-size: 18rem;
+      color: var(--g-pale);
+      line-height: 1;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .story-block > * { position: relative; z-index: 1; }
+    .story-block__intro {
+      font-size: clamp(1.1rem, 2vw, 1.4rem);
+      font-family: var(--ff-display);
+      font-style: italic;
+      font-weight: 600;
+      color: var(--text-dark);
+      line-height: 1.65;
+      max-width: 900px;
+      margin: 0 auto 36px;
+      text-align: center;
+    }
+    .story-block__text {
+      max-width: 800px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .story-block__text p + p { margin-top: 20px; }
+    .story-block__author {
+      margin-top: 32px;
+      text-align: center;
+      font-size: .82rem;
+      font-weight: 700;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--g-bright);
+    }
+
+    /* Crisis section */
+    .crisis-header {
+      max-width: 780px;
+      margin: 0 auto 70px;
+      text-align: center;
+    }
+    .crisis-body { display: flex; flex-direction: column; gap: 80px; }
+    .crisis-row {
+      background: var(--white);
+      border-radius: 14px;
+      padding: 56px 64px;
+      box-shadow: var(--sh-sm);
+      border-left: 6px solid var(--g-bright);
+      position: relative;
+    }
+    .crisis-row--red   { border-left-color: #c0392b; }
+    .crisis-row--amber { border-left-color: #d4840a; }
+    .crisis-row__eyebrow {
+      font-size: .75rem;
+      font-weight: 700;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--g-bright);
+      margin-bottom: 10px;
+    }
+    .crisis-row--red   .crisis-row__eyebrow { color: #c0392b; }
+    .crisis-row--amber .crisis-row__eyebrow { color: #d4840a; }
+    .crisis-row__title { font-size: clamp(1.4rem,2.5vw,2rem); margin-bottom: 18px; }
+    .crisis-row__text  p + p { margin-top: 18px; }
+    .crisis-row__stats {
+      display: grid;
+      grid-template-columns: repeat(3,1fr);
+      gap: 24px;
+      margin-top: 40px;
+      padding-top: 40px;
+      border-top: 1px solid var(--g-softest);
+    }
+    .crisis-stat__num {
+      font-family: var(--ff-display);
+      font-size: 2.8rem;
+      font-weight: 700;
+      color: var(--g-mid);
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+    .crisis-row--red   .crisis-stat__num { color: #c0392b; }
+    .crisis-row--amber .crisis-stat__num { color: #d4840a; }
+    .crisis-stat__label { font-size: .82rem; font-weight: 600; color: var(--text-soft); text-transform: uppercase; letter-spacing: .06em; }
+
+    .vid-row { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 40px; }
+
+    /* YHA intro */
+    .yha-intro {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 80px;
+      align-items: start;
+    }
+    .yha-intro__left { position: sticky; top: calc(var(--nav-h) + 40px); }
+    .yha-intro__big {
+      font-family: var(--ff-display);
+      font-size: clamp(5rem, 12vw, 11rem);
+      font-weight: 700;
+      line-height: .85;
+      color: var(--white);
+      margin-bottom: 16px;
+    }
+    .yha-intro__tagline {
+      font-size: 1.1rem;
+      color: rgba(255,255,255,.68);
+      line-height: 1.8;
+    }
+    .yha-intro__right { padding-top: 10px; }
+    .yha-intro__right p + p { margin-top: 22px; }
+    .yha-intro__right p {
+      color: rgba(255,255,255,.78);
+      font-size: 1.05rem;
+      line-height: 1.9;
+    }
+
+    /* Work pillars */
+    .pillar {
+      background: var(--white);
+      border-radius: 12px;
+      padding: 40px 32px;
+      box-shadow: var(--sh-sm);
+      border-top: 4px solid var(--g-bright);
+      transition: var(--t);
+    }
+    .pillar:hover { transform: translateY(-8px); box-shadow: var(--sh-lg); }
+    .pillar__icon {
+      width: 64px; height: 64px;
+      background: var(--g-softest);
+      border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.6rem;
+      color: var(--g-mid);
+      margin-bottom: 22px;
+    }
+    .pillar__title { font-size: 1.3rem; margin-bottom: 12px; }
+    .pillar__text  { font-size: .95rem; color: var(--text-soft); line-height: 1.85; margin-bottom: 22px; }
+    .pillar__link  { font-size: .82rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--g-mid); display: inline-flex; align-items: center; gap: 6px; transition: var(--t); }
+    .pillar__link:hover { gap: 10px; color: var(--g-bright); }
+
+    @media (max-width: 1024px) {
+      .yha-intro { grid-template-columns: 1fr; }
+      .yha-intro__left { position: static; }
+      .story-block { padding: 48px 40px; }
+      .crisis-row { padding: 40px 32px; }
+      .crisis-row__stats { grid-template-columns: 1fr 1fr; }
+      .vid-row { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 768px) {
+      .story-block { padding: 36px 24px; }
+      .crisis-row  { padding: 28px 20px; }
+      .crisis-row__stats { grid-template-columns: 1fr; gap: 16px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ═══════════════════════════════ NAVIGATION ══ -->
+  <nav class="nav" role="navigation">
+    <div class="nav__inner">
+      <a href="index.html" class="nav__logo">
+        <img src="assets/logo.png" alt="YHA Logo" class="nav__logo-img"
+             onerror="this.style.display='none'" />
+        <span class="nav__logo-name">YHA</span>
+      </a>
+      <ul class="nav__menu" role="list">
+        <li><a href="index.html"  class="nav__link">Home</a></li>
+        <li><a href="about.html"  class="nav__link">About Us</a></li>
+        <li><a href="impact.html" class="nav__link">Our Impact</a></li>
+        <li><a href="donate.html" class="nav__donate">Donate</a></li>
+      </ul>
+      <button class="nav__hamburger" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ═══════════════════════════════ HERO ══════════ -->
+  <section class="hero" aria-label="Welcome to YHA">
+    <div class="container">
+      <div class="hero__inner">
+        <div class="hero__badge">
+          <span class="hero__badge-dot"></span>
+          Nairobi, Kenya &mdash; Est. Young Humanitarians
+        </div>
+        <span class="hero__eyebrow">YHA</span>
+        <h1 class="hero__title">
+          Young Humanitarians<br />
+          <span>in Action</span>
+        </h1>
+        <p class="hero__subtitle">
+          We are a grassroots movement of young people determined to clean our streets,
+          uplift the most vulnerable among us, and prove that change — real, lasting change —
+          starts with ordinary people willing to act.
+        </p>
+        <div class="hero__ctas">
+          <a href="donate.html" class="btn btn--white btn--lg">
+            <i class="fa-solid fa-heart"></i> Donate Now
+          </a>
+          <a href="about.html" class="btn btn--white-outline btn--lg">
+            Who We Are <i class="fa-solid fa-arrow-right"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="hero__scroll" aria-hidden="true">
+      <div class="hero__scroll-bar"></div>
+      <span>Scroll</span>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════ OPENING STORY ══ -->
+  <section class="story-section">
+    <div class="container">
+      <div class="story-block reveal">
+        <p class="story-block__intro">
+          "It's the little things citizens do. That's what will make the difference.<br />
+          My little thing is planting trees."
+        </p>
+        <div class="story-block__text">
+          <p>
+            In 1977, a Kenyan academic named Wangari Maathai walked into her backyard in Nairobi with
+            seven seedlings and a belief that one person could matter. She planted each tree with her
+            own hands on a quiet afternoon — no cameras, no applause, no ceremony. What that single
+            act of quiet defiance grew into became one of the most extraordinary environmental
+            movements in human history.
+          </p>
+          <p>
+            The Green Belt Movement, born from those seven trees, would go on to plant over
+            <strong>51 million trees</strong> across Africa, restore devastated watersheds, and
+            transform the lives of tens of thousands of rural women. In 2004, Wangari Maathai became
+            the first African woman to receive the Nobel Peace Prize. But she never stopped talking
+            about those first seven trees.
+          </p>
+          <p>
+            Her story is not about exceptional talent or extraordinary resources. It is about
+            something far more powerful: the willingness to begin. That is the spirit behind
+            Young Humanitarians in Action. We do not wait for government. We do not wait for
+            permission. We begin — right here, in the streets of our communities, with our hands
+            and our hearts and whatever tools we have.
+          </p>
+        </div>
+        <div class="story-block__author">— Inspired by Wangari Maathai, Nobel Peace Laureate &amp; Kenyan Environmental Pioneer</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════ CRISIS SECTION ══ -->
+  <section class="section section--cream">
+    <div class="container">
+      <div class="crisis-header reveal">
+        <span class="section-eyebrow">The Crisis at Our Doorstep</span>
+        <h2 class="section-title">When Dirty Streets Become a Death Sentence</h2>
+        <p class="section-lead" style="margin:0 auto;">
+          Environmental neglect is not an abstract concept. It is a flood that swallows a child
+          while she sleeps. It is a blocked drain that turns a Nairobi highway into a river.
+          It is the direct and measurable result of years of untreated waste, carelessly
+          discarded plastic, and a city allowed to choke on its own litter.
+        </p>
+      </div>
+
+      <div class="crisis-body">
+
+        <!-- Block 1: Nairobi Floods 2024 -->
+        <div class="crisis-row crisis-row--red reveal">
+          <div class="crisis-row__eyebrow">April – May 2024</div>
+          <h3 class="crisis-row__title">The Floods That Nairobi Could Have Prevented</h3>
+          <div class="crisis-row__text">
+            <p>
+              In the long rains of April and May 2024, Kenya experienced one of its most
+              devastating flood seasons in living memory. The catastrophe unfolded with a cruel
+              logic: heavy rainfall struck a city whose drainage systems — many designed decades
+              ago for a far smaller population — had never been properly maintained, and whose
+              channels were choked with plastic bags, polythene, discarded food packaging, and
+              every form of urban litter imaginable.
+            </p>
+            <p>
+              Water with nowhere to go became a weapon. The Nairobi River and the Athi River
+              burst their banks. Informal settlements — Kibera, Mathare, Mukuru — where
+              infrastructure is poorest and residents are most exposed, bore the worst of it.
+              In Mathare, residents had been warning for years that blocked drains would one
+              day cause a catastrophe. Nobody listened. Then came April 2024.
+            </p>
+            <p>
+              Residents of South C and Grogan watched helplessly as water poured into their
+              homes through clogged drainage systems. In Kirinyaga Road, the Nairobi River
+              burst without warning on a Friday evening, sweeping away cars from mechanical
+              workshops, dragging engines, tools, and livelihoods into a churning brown current.
+              <em>"I just watched as the vehicles were swept away,"</em> said Paul Oduor, a
+              garage owner in Grogan. <em>"Some were submerged, others rolled into the river."</em>
+            </p>
+            <p>
+              Urban planners and residents had long warned that Nairobi's drainage system —
+              much of it designed decades ago for a much smaller city — had not kept pace with
+              the capital's explosive growth. The problem is compounded by blocked drains filled
+              with plastic waste, illegal construction along waterways, and years of poor
+              maintenance. A decade earlier, in 2015, the same thing had happened. And the decade
+              before that. <em>"This is the third time this has happened here,"</em> said one
+              resident. <em>"Every time, we cry, we complain and then everything goes back to normal."</em>
+            </p>
+          </div>
+          <div class="crisis-row__stats">
+            <div>
+              <div class="crisis-stat__num">267+</div>
+              <div class="crisis-stat__label">Lives Lost Across Kenya</div>
+            </div>
+            <div>
+              <div class="crisis-stat__num">300K+</div>
+              <div class="crisis-stat__label">People Displaced Nationwide</div>
+            </div>
+            <div>
+              <div class="crisis-stat__num">80%</div>
+              <div class="crisis-stat__label">of Kenya's 47 Counties Affected</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Flood image + video placeholders -->
+        <div class="vid-row reveal delay-1">
+          <div class="vid-ph" style="min-height:300px;">
+            <div class="vid-ph__play"><i class="fa-solid fa-play"></i></div>
+            <div class="vid-ph__text">
+              Video Placeholder<br />
+              <span style="font-size:.78rem;opacity:.7;">Insert footage: Nairobi floods, blocked drains, Mathare flooding</span>
+            </div>
+          </div>
+          <div class="img-ph" style="min-height:300px;">
+            <div class="img-ph__icon"><i class="fa-solid fa-camera"></i></div>
+            <div class="img-ph__label">Photo: Kirinyaga Road floods, March 2026</div>
+            <div class="img-ph__sub">Replace with actual news photo (credited)</div>
+          </div>
+        </div>
+
+        <!-- Block 2: The 2026 Repeat -->
+        <div class="crisis-row crisis-row--amber reveal">
+          <div class="crisis-row__eyebrow">March 2026 — It Happened Again</div>
+          <h3 class="crisis-row__title">Nairobi's Drainage Crisis Is Not a Natural Disaster</h3>
+          <div class="crisis-row__text">
+            <p>
+              Two years after the catastrophic floods of 2024, Nairobi flooded again. In early
+              March 2026, overnight rainfall caused rivers across the capital to overflow.
+              Uhuru Highway turned into a canal. Mombasa Road was impassable. Vehicles were
+              swept from streets in Grogan. The Nairobi Expressway opened its lanes for free
+              just so commuters could find a road above water.
+            </p>
+            <p>
+              The death toll from those March 2026 floods rose to at least 66 across the country.
+              In Nairobi alone, approximately 3,500 households were affected. Residents of
+              Mukuru, Kibera, Mathare, Pipeline, Githurai, South B, South C, Roysambu, and
+              Westlands woke to water in their homes, their streets, their lives.
+            </p>
+            <p>
+              The cause? Exactly what it was in 2024. Exactly what it was in 2015. Blocked
+              drainage systems. Uncollected garbage. Decades of plastic waste silently
+              accumulating in rivers and storm drains, turning Nairobi's veins into walls.
+              City Hall eventually dispatched 4,000 Green Army personnel to unclog drains —
+              an emergency response to a crisis that should never have been allowed to exist.
+            </p>
+            <p>
+              Greenpeace Africa described the floods as <em>"not a surprise."</em> Climate change,
+              driven by human pollution, is intensifying Kenya's rainfall patterns. A warmer
+              atmosphere holds more moisture. Storms are becoming more destructive. And Nairobi —
+              with its uncollected waste, its overflowing bins, its rivers clogged with
+              polythene — remains catastrophically unprepared. This is the world in which YHA
+              was born. And this is the world we are determined to change.
+            </p>
+          </div>
+          <div class="crisis-row__stats">
+            <div>
+              <div class="crisis-stat__num">66</div>
+              <div class="crisis-stat__label">Dead in March 2026 Floods</div>
+            </div>
+            <div>
+              <div class="crisis-stat__num">3,500</div>
+              <div class="crisis-stat__label">Nairobi Households Affected</div>
+            </div>
+            <div>
+              <div class="crisis-stat__num">71</div>
+              <div class="crisis-stat__label">Vehicles Swept Away by Floodwater</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Block 3: The Root Cause -->
+        <div class="crisis-row reveal">
+          <div class="crisis-row__eyebrow">The Root Cause</div>
+          <h3 class="crisis-row__title">Pollution Is the Hidden Author of These Tragedies</h3>
+          <div class="crisis-row__text">
+            <p>
+              Every polythene bag thrown from a matatu window. Every bottle tossed into the
+              Nairobi River. Every pile of rubbish left to rot at an informal settlement that
+              a garbage truck never visits. These are not small acts of carelessness. They are,
+              in aggregate, acts of collective destruction that end in death.
+            </p>
+            <p>
+              Nairobi's informal settlements — home to more than half the city's population —
+              sit at the lowest point of a chain of neglect. Residents have the least political
+              voice, the fewest municipal services, and the most exposure to the consequences of
+              environmental decay. When the drains flood, they flood first. When cholera spreads
+              (and the Kenya Ministry of Health confirmed a fourth cholera outbreak following
+              the 2024 floods), it spreads fastest among communities where waste water and
+              drinking water share the same space.
+            </p>
+            <p>
+              Researchers from the Africa Research and Impact Network have documented what
+              residents of Kibera and Mathare have known for generations: the crisis is not
+              weather. The crisis is a structural failure sustained by poverty, neglect, and a
+              cultural acceptance of environmental degradation. Changing that culture — one
+              neighbourhood, one cleaned street, one young person at a time — is exactly
+              what Young Humanitarians in Action exists to do.
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════ STAT BAR ══════ -->
+  <div class="stat-bar" aria-label="Key statistics">
+    <div class="container">
+      <div class="stat-bar__grid">
+        <div class="stat-bar__item">
+          <span class="stat-bar__num" data-target="267" data-suffix="+">0+</span>
+          <span class="stat-bar__label">Lives Lost to Floods in Kenya (2024)</span>
+        </div>
+        <div class="stat-bar__item">
+          <span class="stat-bar__num" data-target="300000" data-suffix="+">0+</span>
+          <span class="stat-bar__label">People Displaced by Nairobi Floods</span>
+        </div>
+        <div class="stat-bar__item">
+          <span class="stat-bar__num" data-target="51" data-suffix="M">0M</span>
+          <span class="stat-bar__label">Trees Planted by Green Belt Movement</span>
+        </div>
+        <div class="stat-bar__item">
+          <span class="stat-bar__num" data-target="100" data-suffix="%">0%</span>
+          <span class="stat-bar__label">Preventable — With Community Action</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════ YHA INTRO ═════ -->
+  <section class="section section--green">
+    <div class="container">
+      <div class="yha-intro reveal">
+        <div class="yha-intro__left">
+          <div class="yha-intro__big">YHA</div>
+          <p class="yha-intro__tagline">
+            Young people.<br />Real action.<br />Lasting change.
+          </p>
+        </div>
+        <div class="yha-intro__right">
+          <span class="section-eyebrow">Here Is Where We Come In</span>
+          <h2 class="section-title" style="color:var(--white);margin-bottom:24px;">
+            We Don't Wait for Someone Else to Fix It
+          </h2>
+          <p>
+            Young Humanitarians in Action is a grassroots organisation born in the heart of
+            Nairobi's most vulnerable communities. We are young people — volunteers, dreamers,
+            and doers — who have decided that the gap between the world as it is and the world
+            as it should be is a gap worth crossing.
+          </p>
+          <p>
+            We pick up litter that clogs the drains. We organise cleaning days in slums
+            that county governments ignore. We knock on the doors of children's homes carrying
+            food, clothing, and school supplies. We walk into communities with no proper
+            sanitation and ask: <em>what do you need, and how can we help?</em>
+          </p>
+          <p>
+            We are not a corporation. We are not funded by international NGOs chasing donor
+            metrics. We are young Kenyans who grew up watching the suffering in our communities
+            and decided — enough. We cannot wait for the perfect government, the perfect policy,
+            or the perfect plan. We work with what we have, where we are.
+          </p>
+          <p>
+            Because every cleaned drain is one less family whose home floods. Every bag of
+            food delivered to a children's home is one less child who goes to bed hungry.
+            Every child we teach about environmental stewardship is one less person who will
+            grow up throwing waste into a river. Change is cumulative. And it starts today.
+          </p>
+          <div style="margin-top:40px;">
+            <a href="about.html" class="btn btn--white">
+              Learn More About Us <i class="fa-solid fa-arrow-right"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════ THREE PILLARS ═ -->
+  <section class="section">
+    <div class="container">
+      <div class="text-center reveal">
+        <span class="section-eyebrow">What We Do</span>
+        <h2 class="section-title">Three Pillars of a Better Nairobi</h2>
+        <p class="section-lead">
+          Every action YHA takes falls under one of three core commitments —
+          all of them grounded in the conviction that a cleaner, kinder world is not a dream.
+          It is a choice made in action, day after day.
+        </p>
+      </div>
+      <div class="three-col" style="margin-top:20px;">
+        <div class="pillar reveal delay-1">
+          <div class="pillar__icon"><i class="fa-solid fa-leaf"></i></div>
+          <h3 class="pillar__title">Environmental Service</h3>
+          <p class="pillar__text">
+            We organise community clean-ups in Nairobi's slums and underserved settlements —
+            clearing blocked drains, collecting garbage, and cleaning the streets that formal
+            waste management forgets. We believe a clean environment is not a luxury.
+            It is a right. And we act on that belief every time we show up with gloves and refuse sacks.
+          </p>
+          <a href="about.html#environment" class="pillar__link">
+            Read more <i class="fa-solid fa-arrow-right"></i>
+          </a>
+        </div>
+        <div class="pillar reveal delay-2">
+          <div class="pillar__icon"><i class="fa-solid fa-hand-holding-heart"></i></div>
+          <h3 class="pillar__title">Charity & Outreach</h3>
+          <p class="pillar__text">
+            We donate food, clothing, school supplies, and essential goods to children's homes
+            across Nairobi, and to families in need within the communities we serve. No child
+            should face the day hungry or ill-equipped to learn. Our outreach teams build
+            relationships — not just deliveries — because real charity is built on dignity.
+          </p>
+          <a href="about.html#charity" class="pillar__link">
+            Read more <i class="fa-solid fa-arrow-right"></i>
+          </a>
+        </div>
+        <div class="pillar reveal delay-3">
+          <div class="pillar__icon"><i class="fa-solid fa-chalkboard-user"></i></div>
+          <h3 class="pillar__title">Community Education</h3>
+          <p class="pillar__text">
+            We visit schools and community centres in the slums to teach children and young
+            adults about environmental conservation, waste management, and why keeping their
+            surroundings clean is not just helpful — it is life-saving. An informed community
+            is the most powerful environmental tool there is.
+          </p>
+          <a href="about.html#education" class="pillar__link">
+            Read more <i class="fa-solid fa-arrow-right"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════ CTA BANNER ════ -->
+  <section class="cta-banner">
+    <div class="container">
+      <div class="cta-banner__inner reveal">
+        <span class="section-eyebrow" style="color:var(--g-light);">Be Part of This</span>
+        <h2 class="cta-banner__title">Every Single Contribution Counts</h2>
+        <p class="cta-banner__text">
+          You don't need to be famous, wealthy, or powerful to change a life.
+          A bag of rice. A pair of school shoes. A hundred shillings on M-Pesa.
+          All of it reaches someone who needs it. All of it matters.
+        </p>
+        <div class="cta-banner__btns">
+          <a href="donate.html" class="btn btn--white btn--lg">
+            <i class="fa-solid fa-heart"></i> Donate Today
+          </a>
+          <a href="impact.html" class="btn btn--white-outline btn--lg">
+            See Our Impact <i class="fa-solid fa-arrow-right"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════ CONTACT ═══════ -->
+  <section class="section" id="contact">
+    <div class="container">
+      <div class="reveal" style="margin-bottom:60px;">
+        <span class="section-eyebrow">Get In Touch</span>
+        <h2 class="section-title">We'd Love to Hear from You</h2>
+        <p class="section-lead">
+          Whether you'd like to volunteer, ask a question, report a community need, or
+          simply say hello — our team is here and we respond to every message.
+        </p>
+      </div>
+      <div class="contact-grid">
+        <div class="reveal-left">
+          <div class="contact-info__item">
+            <div class="contact-info__icon"><i class="fa-solid fa-location-dot"></i></div>
+            <div>
+              <div class="contact-info__label">Our Base</div>
+              <div class="contact-info__val">Nairobi, Kenya<br />[Street Address — Placeholder]</div>
+            </div>
+          </div>
+          <div class="contact-info__item">
+            <div class="contact-info__icon"><i class="fa-solid fa-phone"></i></div>
+            <div>
+              <div class="contact-info__label">Phone / WhatsApp</div>
+              <div class="contact-info__val">+254 700 000 000 [Placeholder]</div>
+            </div>
+          </div>
+          <div class="contact-info__item">
+            <div class="contact-info__icon"><i class="fa-solid fa-envelope"></i></div>
+            <div>
+              <div class="contact-info__label">Email</div>
+              <div class="contact-info__val">hello@younghumanitarians.org [Placeholder]</div>
+            </div>
+          </div>
+          <div class="contact-info__item">
+            <div class="contact-info__icon"><i class="fa-solid fa-clock"></i></div>
+            <div>
+              <div class="contact-info__label">Response Time</div>
+              <div class="contact-info__val">We reply within 24 hours on business days</div>
+            </div>
+          </div>
+
+          <div style="margin-top:32px;">
+            <div class="contact-info__label" style="margin-bottom:14px;">Follow Our Journey</div>
+            <div style="display:flex;gap:12px;">
+              <a href="#" style="width:44px;height:44px;background:var(--g-softest);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--g-mid);font-size:1.1rem;transition:var(--t);" onmouseover="this.style.background='var(--g-mid)';this.style.color='white'" onmouseout="this.style.background='var(--g-softest)';this.style.color='var(--g-mid)'">
+                <i class="fa-brands fa-instagram"></i></a>
+              <a href="#" style="width:44px;height:44px;background:var(--g-softest);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--g-mid);font-size:1.1rem;transition:var(--t);" onmouseover="this.style.background='var(--g-mid)';this.style.color='white'" onmouseout="this.style.background='var(--g-softest)';this.style.color='var(--g-mid)'">
+                <i class="fa-brands fa-facebook-f"></i></a>
+              <a href="#" style="width:44px;height:44px;background:var(--g-softest);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--g-mid);font-size:1.1rem;transition:var(--t);" onmouseover="this.style.background='var(--g-mid)';this.style.color='white'" onmouseout="this.style.background='var(--g-softest)';this.style.color='var(--g-mid)'">
+                <i class="fa-brands fa-x-twitter"></i></a>
+              <a href="#" style="width:44px;height:44px;background:var(--g-softest);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--g-mid);font-size:1.1rem;transition:var(--t);" onmouseover="this.style.background='var(--g-mid)';this.style.color='white'" onmouseout="this.style.background='var(--g-softest)';this.style.color='var(--g-mid)'">
+                <i class="fa-brands fa-tiktok"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="reveal-right">
+          <form class="contact-form" onsubmit="event.preventDefault(); alert('Thank you for reaching out! We will get back to you within 24 hours.');">
+            <div class="form-row">
+              <div class="form-group">
+                <label for="name">Your Name</label>
+                <input type="text" id="name" placeholder="Jane Mwangi" required />
+              </div>
+              <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" placeholder="jane@example.com" required />
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="phone">Phone / WhatsApp (Optional)</label>
+              <input type="tel" id="phone" placeholder="+254 700 000 000" />
+            </div>
+            <div class="form-group">
+              <label for="subject">What is this about?</label>
+              <select id="subject">
+                <option value="">Select a topic</option>
+                <option>I want to volunteer</option>
+                <option>I want to donate goods</option>
+                <option>I want to partner with YHA</option>
+                <option>I have a general enquiry</option>
+                <option>Press / Media enquiry</option>
+                <option>Other</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="message">Your Message</label>
+              <textarea id="message" rows="5" placeholder="Tell us how you'd like to get involved, or ask us anything..." required></textarea>
+            </div>
+            <button type="submit" class="btn btn--primary" style="align-self:flex-start;">
+              <i class="fa-solid fa-paper-plane"></i> Send Message
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════ FOOTER ════════ -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__grid">
+        <div class="footer__brand">
+          <div class="footer__logo">
+            <img src="assets/logo.png" alt="YHA" class="footer__logo-img"
+                 onerror="this.style.display='none'" />
+            <span class="footer__logo-name">YHA</span>
+          </div>
+          <p class="footer__tagline">
+            Young Humanitarians in Action. Nairobi-based, community-driven, and committed
+            to building a cleaner, kinder world — one street, one family, one cleaned drain at a time.
+          </p>
+          <div class="footer__social">
+            <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="#" aria-label="Twitter / X"><i class="fa-brands fa-x-twitter"></i></a>
+            <a href="#" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+          </div>
+        </div>
+        <div class="footer__col">
+          <h4>Navigate</h4>
+          <ul class="footer__links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="impact.html">Our Impact</a></li>
+            <li><a href="donate.html">Donate</a></li>
+            <li><a href="index.html#contact">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer__col">
+          <h4>What We Do</h4>
+          <ul class="footer__links">
+            <li><a href="about.html#environment">Environmental Clean-Ups</a></li>
+            <li><a href="about.html#charity">Charity & Outreach</a></li>
+            <li><a href="about.html#education">Community Education</a></li>
+            <li><a href="impact.html">Stories of Impact</a></li>
+            <li><a href="donate.html">How to Donate</a></li>
+          </ul>
+        </div>
+        <div class="footer__col">
+          <h4>Contact Us</h4>
+          <div class="footer__contact-item">
+            <i class="fa-solid fa-location-dot"></i>
+            <span>Nairobi, Kenya<br />[Address Placeholder]</span>
+          </div>
+          <div class="footer__contact-item">
+            <i class="fa-solid fa-phone"></i>
+            <span>+254 700 000 000 [Placeholder]</span>
+          </div>
+          <div class="footer__contact-item">
+            <i class="fa-solid fa-envelope"></i>
+            <span>hello@younghumanitarians.org</span>
+          </div>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <span>&copy; 2025 Young Humanitarians in Action. All rights reserved.</span>
+        <span>Made with <span style="color:var(--g-light)">&#9829;</span> in Nairobi, Kenya</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

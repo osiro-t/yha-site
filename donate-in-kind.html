@@ -1,0 +1,1322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Donate In Kind — YHA Young Humanitarians in Action</title>
+  <meta name="description" content="Tell us what you'd like to donate to Young Humanitarians in Action — food, clothing, school supplies, or any other goods." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600;1,700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+  <style>
+    /* ── VARIABLES ─────────────────────────────────────── */
+    :root {
+      --g-darkest:  #071a0e;
+      --g-dark:     #0f5c2a;
+      --g-mid:      #1a7a3c;
+      --g-bright:   #2eaa54;
+      --g-light:    #4dcc77;
+      --g-pale:     #b8e8c9;
+      --g-softest:  #edf7f1;
+      --white:      #ffffff;
+      --cream:      #f4f9f6;
+      --text-dark:  #071a0e;
+      --text-mid:   #1e3d2a;
+      --text-soft:  #4a7059;
+      --ff-display: 'Cormorant Garamond', serif;
+      --ff-body:    'Outfit', sans-serif;
+      --sh-sm: 0 2px 12px rgba(15,92,42,.10);
+      --sh-md: 0 8px 36px rgba(15,92,42,.15);
+      --ease: cubic-bezier(.4,0,.2,1);
+      --t: all .3s var(--ease);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body {
+      font-family: var(--ff-body);
+      color: var(--text-dark);
+      background: var(--cream);
+      line-height: 1.75;
+      min-height: 100vh;
+    }
+    a { text-decoration: none; color: inherit; }
+
+    /* ── TOP BAR ───────────────────────────────────────── */
+    .topbar {
+      background: var(--g-darkest);
+      padding: 14px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .topbar__logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--white);
+      font-family: var(--ff-display);
+      font-size: 1.4rem;
+      font-weight: 700;
+    }
+    .topbar__logo img {
+      width: 36px; height: 36px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+    .topbar__back {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: .8rem;
+      font-weight: 600;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.55);
+      transition: var(--t);
+    }
+    .topbar__back:hover { color: var(--g-light); }
+
+    /* ── PAGE LAYOUT ───────────────────────────────────── */
+    .page {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 60px 24px 100px;
+    }
+
+    /* ── FORM HEADER ───────────────────────────────────── */
+    .form-header {
+      background: linear-gradient(135deg, var(--g-dark) 0%, var(--g-mid) 100%);
+      border-radius: 16px 16px 0 0;
+      padding: 50px 56px 44px;
+      position: relative;
+      overflow: hidden;
+    }
+    .form-header::before {
+      content: '';
+      position: absolute;
+      right: -40px; top: -40px;
+      width: 260px; height: 260px;
+      border-radius: 50%;
+      border: 50px solid rgba(255,255,255,.05);
+      pointer-events: none;
+    }
+    .form-header__eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255,255,255,.1);
+      border: 1px solid rgba(255,255,255,.2);
+      border-radius: 100px;
+      padding: 6px 16px;
+      font-size: .72rem;
+      font-weight: 700;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--g-light);
+      margin-bottom: 18px;
+    }
+    .form-header__title {
+      font-family: var(--ff-display);
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      font-weight: 700;
+      color: var(--white);
+      line-height: 1.15;
+      margin-bottom: 14px;
+    }
+    .form-header__sub {
+      font-size: 1rem;
+      color: rgba(255,255,255,.72);
+      max-width: 520px;
+      line-height: 1.8;
+    }
+    .form-header__accent {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--g-light), var(--g-bright), var(--g-light));
+    }
+
+    /* ── PROGRESS BAR ──────────────────────────────────── */
+    .progress-bar {
+      background: var(--white);
+      padding: 20px 56px;
+      border-left: 1px solid var(--g-pale);
+      border-right: 1px solid var(--g-pale);
+      display: flex;
+      align-items: center;
+      gap: 0;
+    }
+    .progress-step {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      position: relative;
+    }
+    .progress-step::after {
+      content: '';
+      position: absolute;
+      top: 15px;
+      left: 50%;
+      width: 100%;
+      height: 2px;
+      background: var(--g-pale);
+      z-index: 0;
+    }
+    .progress-step:last-child::after { display: none; }
+    .progress-step__dot {
+      width: 30px; height: 30px;
+      border-radius: 50%;
+      border: 2px solid var(--g-pale);
+      background: var(--white);
+      display: flex; align-items: center; justify-content: center;
+      font-size: .75rem;
+      font-weight: 700;
+      color: var(--text-soft);
+      position: relative; z-index: 1;
+      transition: var(--t);
+    }
+    .progress-step.active .progress-step__dot {
+      border-color: var(--g-mid);
+      background: var(--g-mid);
+      color: var(--white);
+    }
+    .progress-step.done .progress-step__dot {
+      border-color: var(--g-bright);
+      background: var(--g-bright);
+      color: var(--white);
+    }
+    .progress-step.done::after { background: var(--g-bright); }
+    .progress-step__label {
+      font-size: .68rem;
+      font-weight: 600;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      color: var(--text-soft);
+      white-space: nowrap;
+    }
+    .progress-step.active .progress-step__label { color: var(--g-mid); }
+
+    /* ── FORM BODY ─────────────────────────────────────── */
+    .form-body {
+      background: var(--white);
+      border: 1px solid var(--g-pale);
+      border-top: none;
+      border-radius: 0 0 16px 16px;
+      padding: 52px 56px;
+      box-shadow: var(--sh-md);
+    }
+
+    /* ── FORM SECTIONS ─────────────────────────────────── */
+    .form-section { display: none; }
+    .form-section.active { display: block; }
+
+    .section-title {
+      font-family: var(--ff-display);
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--text-dark);
+      margin-bottom: 6px;
+    }
+    .section-desc {
+      font-size: .92rem;
+      color: var(--text-soft);
+      margin-bottom: 36px;
+      line-height: 1.7;
+    }
+
+    /* ── FORM ELEMENTS ─────────────────────────────────── */
+    .field { margin-bottom: 26px; }
+    .field label {
+      display: block;
+      font-size: .82rem;
+      font-weight: 700;
+      color: var(--text-mid);
+      letter-spacing: .04em;
+      margin-bottom: 8px;
+    }
+    .field label .required { color: var(--g-bright); margin-left: 3px; }
+    .field label .optional {
+      font-weight: 400;
+      color: var(--text-soft);
+      font-size: .76rem;
+      margin-left: 6px;
+      letter-spacing: 0;
+    }
+
+    .field input[type="text"],
+    .field input[type="email"],
+    .field input[type="tel"],
+    .field input[type="number"],
+    .field input[type="date"],
+    .field select,
+    .field textarea {
+      width: 100%;
+      padding: 14px 18px;
+      border: 1.5px solid var(--g-pale);
+      border-radius: 8px;
+      font-family: var(--ff-body);
+      font-size: .97rem;
+      color: var(--text-dark);
+      background: var(--white);
+      outline: none;
+      transition: var(--t);
+      resize: none;
+      appearance: none;
+    }
+    .field input:focus,
+    .field select:focus,
+    .field textarea:focus {
+      border-color: var(--g-bright);
+      box-shadow: 0 0 0 3px rgba(46,170,84,.12);
+    }
+    .field input.error,
+    .field select.error,
+    .field textarea.error {
+      border-color: #c0392b;
+      box-shadow: 0 0 0 3px rgba(192,57,43,.1);
+    }
+    .field__hint {
+      font-size: .78rem;
+      color: var(--text-soft);
+      margin-top: 6px;
+      display: flex;
+      align-items: flex-start;
+      gap: 6px;
+    }
+    .field__hint i { color: var(--g-bright); margin-top: 2px; font-size: .72rem; flex-shrink: 0; }
+    .field__error {
+      font-size: .78rem;
+      color: #c0392b;
+      margin-top: 6px;
+      display: none;
+    }
+    .field__error.show { display: block; }
+
+    .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+
+    /* Radio / Checkbox Cards */
+    .card-options {
+      display: grid;
+      gap: 12px;
+    }
+    .card-options--two { grid-template-columns: 1fr 1fr; }
+    .card-options--three { grid-template-columns: 1fr 1fr 1fr; }
+
+    .option-card {
+      position: relative;
+    }
+    .option-card input { position: absolute; opacity: 0; width: 0; height: 0; }
+    .option-card label {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      padding: 18px 20px;
+      border: 1.5px solid var(--g-pale);
+      border-radius: 10px;
+      cursor: pointer;
+      transition: var(--t);
+      font-size: .95rem;
+      font-weight: 500;
+      color: var(--text-mid);
+      line-height: 1.4;
+      margin: 0;
+      letter-spacing: 0;
+    }
+    .option-card label i {
+      font-size: 1.3rem;
+      color: var(--g-pale);
+      transition: var(--t);
+      margin-bottom: 4px;
+    }
+    .option-card label .opt-title { font-weight: 700; font-size: .95rem; }
+    .option-card label .opt-sub   { font-size: .8rem; color: var(--text-soft); font-weight: 400; line-height: 1.5; }
+
+    .option-card input:checked + label {
+      border-color: var(--g-mid);
+      background: var(--g-softest);
+      color: var(--g-mid);
+    }
+    .option-card input:checked + label i { color: var(--g-mid); }
+    .option-card label:hover { border-color: var(--g-bright); }
+
+    /* Checkbox tick */
+    .checkbox-field {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 16px 18px;
+      border: 1.5px solid var(--g-pale);
+      border-radius: 8px;
+      cursor: pointer;
+      transition: var(--t);
+      margin-bottom: 10px;
+    }
+    .checkbox-field:hover { border-color: var(--g-bright); background: var(--g-softest); }
+    .checkbox-field input { width: 18px; height: 18px; accent-color: var(--g-mid); flex-shrink: 0; margin-top: 2px; cursor: pointer; }
+    .checkbox-field__text { font-size: .92rem; color: var(--text-mid); }
+    .checkbox-field__text strong { display: block; font-size: .95rem; margin-bottom: 2px; }
+
+    /* Quantity input with stepper */
+    .qty-wrapper {
+      display: flex;
+      align-items: center;
+      border: 1.5px solid var(--g-pale);
+      border-radius: 8px;
+      overflow: hidden;
+      width: 180px;
+      transition: var(--t);
+    }
+    .qty-wrapper:focus-within { border-color: var(--g-bright); box-shadow: 0 0 0 3px rgba(46,170,84,.12); }
+    .qty-btn {
+      width: 44px; height: 48px;
+      border: none;
+      background: var(--g-softest);
+      color: var(--g-mid);
+      font-size: 1.2rem;
+      cursor: pointer;
+      transition: var(--t);
+      flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .qty-btn:hover { background: var(--g-pale); }
+    .qty-input {
+      width: 100%;
+      text-align: center;
+      border: none !important;
+      box-shadow: none !important;
+      font-family: var(--ff-body);
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--text-dark);
+      padding: 0 !important;
+    }
+
+    /* Anon toggle */
+    .anon-toggle {
+      background: var(--g-softest);
+      border: 1.5px solid var(--g-pale);
+      border-radius: 10px;
+      padding: 20px 22px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 28px;
+      cursor: pointer;
+      transition: var(--t);
+    }
+    .anon-toggle:hover { border-color: var(--g-bright); }
+    .anon-toggle__text strong { display: block; font-size: .97rem; margin-bottom: 2px; }
+    .anon-toggle__text span { font-size: .82rem; color: var(--text-soft); }
+    .toggle-switch {
+      width: 48px; height: 26px;
+      background: var(--g-pale);
+      border-radius: 100px;
+      position: relative;
+      flex-shrink: 0;
+      transition: var(--t);
+    }
+    .toggle-switch::after {
+      content: '';
+      position: absolute;
+      top: 3px; left: 3px;
+      width: 20px; height: 20px;
+      background: var(--white);
+      border-radius: 50%;
+      box-shadow: var(--sh-sm);
+      transition: var(--t);
+    }
+    .anon-toggle.on .toggle-switch { background: var(--g-mid); }
+    .anon-toggle.on .toggle-switch::after { left: calc(100% - 23px); }
+
+    .anon-fields { display: none; }
+    .anon-fields.show { display: block; }
+
+    /* ── DIVIDER ───────────────────────────────────────── */
+    .form-divider {
+      border: none;
+      border-top: 1px solid var(--g-softest);
+      margin: 36px 0;
+    }
+
+    /* ── SUMMARY SECTION ───────────────────────────────── */
+    .summary-box {
+      background: var(--g-softest);
+      border: 1.5px solid var(--g-pale);
+      border-radius: 12px;
+      padding: 32px;
+      margin-bottom: 32px;
+    }
+    .summary-box h4 {
+      font-size: 1rem;
+      font-family: var(--ff-display);
+      margin-bottom: 18px;
+      color: var(--text-dark);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .summary-box h4 i { color: var(--g-bright); }
+    .summary-row {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 20px;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--g-pale);
+      font-size: .9rem;
+    }
+    .summary-row:last-child { border-bottom: none; padding-bottom: 0; }
+    .summary-row__key { color: var(--text-soft); font-weight: 500; }
+    .summary-row__val { color: var(--text-dark); font-weight: 600; text-align: right; }
+
+    /* ── NAVIGATION BUTTONS ────────────────────────────── */
+    .form-nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 40px;
+      padding-top: 28px;
+      border-top: 1px solid var(--g-softest);
+      gap: 16px;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 36px;
+      border-radius: 6px;
+      font-family: var(--ff-body);
+      font-size: .9rem;
+      font-weight: 600;
+      letter-spacing: .05em;
+      cursor: pointer;
+      border: 2px solid transparent;
+      transition: var(--t);
+    }
+    .btn--primary {
+      background: var(--g-mid);
+      color: var(--white);
+      border-color: var(--g-mid);
+    }
+    .btn--primary:hover { background: var(--g-bright); border-color: var(--g-bright); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(15,92,42,.2); }
+    .btn--ghost {
+      background: transparent;
+      color: var(--text-soft);
+      border-color: var(--g-pale);
+    }
+    .btn--ghost:hover { border-color: var(--g-mid); color: var(--g-mid); background: var(--g-softest); }
+    .btn--lg { padding: 16px 44px; font-size: .97rem; }
+
+    /* ── SUCCESS STATE ─────────────────────────────────── */
+    .success-screen {
+      display: none;
+      text-align: center;
+      padding: 20px 0 10px;
+    }
+    .success-screen.show { display: block; }
+    .success-icon {
+      width: 90px; height: 90px;
+      background: var(--g-softest);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 2.2rem;
+      color: var(--g-mid);
+      margin: 0 auto 28px;
+      animation: popIn .5s cubic-bezier(.34,1.56,.64,1) both;
+    }
+    @keyframes popIn {
+      from { transform: scale(0); opacity: 0; }
+      to   { transform: scale(1); opacity: 1; }
+    }
+    .success-title {
+      font-family: var(--ff-display);
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--text-dark);
+      margin-bottom: 12px;
+    }
+    .success-text { font-size: 1rem; color: var(--text-soft); max-width: 480px; margin: 0 auto 32px; line-height: 1.8; }
+    .success-ref {
+      display: inline-block;
+      background: var(--g-softest);
+      border: 1.5px solid var(--g-pale);
+      border-radius: 8px;
+      padding: 14px 28px;
+      font-size: .88rem;
+      font-weight: 600;
+      color: var(--text-mid);
+      margin-bottom: 32px;
+    }
+    .success-ref span { color: var(--g-mid); font-size: 1.05rem; }
+    .success-btns { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+
+    /* ── SIDEBAR TRUST ITEMS ───────────────────────────── */
+    .page-inner {
+      display: grid;
+      grid-template-columns: 1fr 300px;
+      gap: 32px;
+      align-items: start;
+    }
+    .sidebar { position: sticky; top: 30px; }
+    .sidebar-card {
+      background: var(--white);
+      border: 1.5px solid var(--g-pale);
+      border-radius: 12px;
+      padding: 28px;
+      margin-bottom: 16px;
+      box-shadow: var(--sh-sm);
+    }
+    .sidebar-card h4 {
+      font-family: var(--ff-display);
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--text-dark);
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .sidebar-card h4 i { color: var(--g-bright); font-size: .9rem; }
+    .trust-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 14px;
+      font-size: .88rem;
+      color: var(--text-soft);
+      line-height: 1.6;
+    }
+    .trust-item i { color: var(--g-bright); width: 14px; margin-top: 3px; flex-shrink: 0; }
+    .trust-item:last-child { margin-bottom: 0; }
+    .needed-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--g-softest);
+      font-size: .88rem;
+      color: var(--text-mid);
+    }
+    .needed-item:last-child { border-bottom: none; }
+    .needed-item i { color: var(--g-mid); width: 14px; text-align: center; }
+
+    /* ── RESPONSIVE ────────────────────────────────────── */
+    @media (max-width: 900px) {
+      .page-inner { grid-template-columns: 1fr; }
+      .sidebar { position: static; }
+    }
+    @media (max-width: 640px) {
+      .topbar { padding: 14px 20px; }
+      .form-header { padding: 36px 28px 32px; }
+      .progress-bar { padding: 16px 20px; }
+      .form-body { padding: 36px 24px; }
+      .field-row { grid-template-columns: 1fr; }
+      .card-options--two,
+      .card-options--three { grid-template-columns: 1fr; }
+      .form-nav { flex-direction: column-reverse; }
+      .form-nav .btn { width: 100%; justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ═══════════════════════════════ TOP BAR ══════ -->
+  <div class="topbar">
+    <a href="index.html" class="topbar__logo">
+      <img src="assets/logo.png" alt="YHA Logo" onerror="this.style.display='none'" />
+      YHA
+    </a>
+    <a href="donate.html" class="topbar__back">
+      <i class="fa-solid fa-arrow-left"></i> Back to Donate
+    </a>
+  </div>
+
+  <!-- ═══════════════════════════════ PAGE ══════════ -->
+  <div class="page">
+    <div class="page-inner">
+
+      <!-- MAIN FORM COLUMN -->
+      <div>
+        <!-- Form Header -->
+        <div class="form-header">
+          <div class="form-header__eyebrow">
+            <i class="fa-solid fa-box-open"></i>
+            Donate In Kind — Young Humanitarians in Action
+          </div>
+          <h1 class="form-header__title">Tell Us What<br />You'd Like to Give.</h1>
+          <p class="form-header__sub">
+            This short form helps us understand what you're donating, its condition, and
+            how to coordinate collecting or receiving it. It takes under 3 minutes.
+          </p>
+          <div class="form-header__accent"></div>
+        </div>
+
+        <!-- Progress Bar -->
+        <div class="progress-bar">
+          <div class="progress-step active" id="step-dot-1">
+            <div class="progress-step__dot">1</div>
+            <div class="progress-step__label">About You</div>
+          </div>
+          <div class="progress-step" id="step-dot-2">
+            <div class="progress-step__dot">2</div>
+            <div class="progress-step__label">Your Donation</div>
+          </div>
+          <div class="progress-step" id="step-dot-3">
+            <div class="progress-step__dot">3</div>
+            <div class="progress-step__label">Collection</div>
+          </div>
+          <div class="progress-step" id="step-dot-4">
+            <div class="progress-step__dot">4</div>
+            <div class="progress-step__label">Confirm</div>
+          </div>
+        </div>
+
+        <!-- Form Body -->
+        <div class="form-body">
+
+          <!-- ══ SECTION 1 — About You ══ -->
+          <div class="form-section active" id="section-1">
+            <h2 class="section-title">First, a bit about you.</h2>
+            <p class="section-desc">
+              Your details help us reach you to coordinate the donation.
+              If you'd prefer to give anonymously, toggle that option below.
+            </p>
+
+            <!-- Anonymous toggle -->
+            <div class="anon-toggle" id="anon-toggle" onclick="toggleAnon()">
+              <div class="anon-toggle__text">
+                <strong><i class="fa-solid fa-mask" style="margin-right:7px;color:var(--g-mid);"></i>I'd like to donate anonymously</strong>
+                <span>Your name and contact details will not be recorded.</span>
+              </div>
+              <div class="toggle-switch" id="anon-switch"></div>
+            </div>
+
+            <!-- Personal fields (hidden when anonymous) -->
+            <div id="personal-fields">
+              <div class="field-row">
+                <div class="field">
+                  <label>First Name <span class="required">*</span></label>
+                  <input type="text" id="fname" placeholder="Jane" />
+                  <div class="field__error" id="fname-err">Please enter your first name.</div>
+                </div>
+                <div class="field">
+                  <label>Last Name <span class="optional">(optional)</span></label>
+                  <input type="text" id="lname" placeholder="Mwangi" />
+                </div>
+              </div>
+
+              <div class="field-row">
+                <div class="field">
+                  <label>Phone / WhatsApp <span class="required">*</span></label>
+                  <input type="tel" id="phone" placeholder="+254 700 000 000" />
+                  <div class="field__hint"><i class="fa-solid fa-circle-info"></i> We'll use this to coordinate pick-up or drop-off.</div>
+                  <div class="field__error" id="phone-err">Please enter a contact number.</div>
+                </div>
+                <div class="field">
+                  <label>Email Address <span class="optional">(optional)</span></label>
+                  <input type="email" id="email" placeholder="jane@example.com" />
+                  <div class="field__hint"><i class="fa-solid fa-circle-info"></i> For a donation acknowledgement receipt.</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="field">
+              <label>How did you hear about YHA? <span class="optional">(optional)</span></label>
+              <select id="referral">
+                <option value="">Select an option</option>
+                <option>Social media (Instagram / TikTok / Facebook)</option>
+                <option>A friend or family member</option>
+                <option>WhatsApp / community group</option>
+                <option>YHA website</option>
+                <option>News article or media coverage</option>
+                <option>Community event or clean-up day</option>
+                <option>Other</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- ══ SECTION 2 — Donation Details ══ -->
+          <div class="form-section" id="section-2">
+            <h2 class="section-title">What would you like to donate?</h2>
+            <p class="section-desc">
+              Select the category that best describes your donation. You can donate more than
+              one type of item — describe everything in the details field below.
+            </p>
+
+            <div class="field">
+              <label>Category <span class="required">*</span></label>
+              <div class="card-options card-options--three">
+                <div class="option-card">
+                  <input type="radio" name="category" id="cat-food" value="Food & Groceries" />
+                  <label for="cat-food">
+                    <i class="fa-solid fa-bowl-rice"></i>
+                    <span class="opt-title">Food &amp; Groceries</span>
+                    <span class="opt-sub">Rice, flour, beans, cooking oil, canned goods, etc.</span>
+                  </label>
+                </div>
+                <div class="option-card">
+                  <input type="radio" name="category" id="cat-clothing" value="Clothing" />
+                  <label for="cat-clothing">
+                    <i class="fa-solid fa-shirt"></i>
+                    <span class="opt-title">Clothing</span>
+                    <span class="opt-sub">Children's or adult clothing, shoes, uniforms.</span>
+                  </label>
+                </div>
+                <div class="option-card">
+                  <input type="radio" name="category" id="cat-school" value="School Supplies" />
+                  <label for="cat-school">
+                    <i class="fa-solid fa-book"></i>
+                    <span class="opt-title">School Supplies</span>
+                    <span class="opt-sub">Exercise books, pens, stationery, school bags.</span>
+                  </label>
+                </div>
+                <div class="option-card">
+                  <input type="radio" name="category" id="cat-hygiene" value="Hygiene Products" />
+                  <label for="cat-hygiene">
+                    <i class="fa-solid fa-soap"></i>
+                    <span class="opt-title">Hygiene Products</span>
+                    <span class="opt-sub">Soap, toothpaste, sanitary products, etc.</span>
+                  </label>
+                </div>
+                <div class="option-card">
+                  <input type="radio" name="category" id="cat-bedding" value="Bedding & Household" />
+                  <label for="cat-bedding">
+                    <i class="fa-solid fa-bed"></i>
+                    <span class="opt-title">Bedding &amp; Household</span>
+                    <span class="opt-sub">Blankets, pillows, kitchenware, towels.</span>
+                  </label>
+                </div>
+                <div class="option-card">
+                  <input type="radio" name="category" id="cat-other" value="Other" />
+                  <label for="cat-other">
+                    <i class="fa-solid fa-ellipsis"></i>
+                    <span class="opt-title">Other</span>
+                    <span class="opt-sub">Something not listed above — describe below.</span>
+                  </label>
+                </div>
+              </div>
+              <div class="field__error" id="category-err">Please select a donation category.</div>
+            </div>
+
+            <div class="field">
+              <label>Describe what you're donating <span class="required">*</span></label>
+              <textarea id="description" rows="4" placeholder="E.g. '3 bags of rice (2kg each), 1 bottle of cooking oil (2L), and a box of assorted canned goods' — the more detail the better."></textarea>
+              <div class="field__hint"><i class="fa-solid fa-circle-info"></i> Include quantities, sizes (for clothing), brand names, or any other relevant details.</div>
+              <div class="field__error" id="description-err">Please describe what you'd like to donate.</div>
+            </div>
+
+            <div class="field-row">
+              <div class="field">
+                <label>Approximate Quantity <span class="required">*</span></label>
+                <div class="qty-wrapper">
+                  <button class="qty-btn" onclick="changeQty(-1)" type="button">−</button>
+                  <input type="number" class="qty-input" id="quantity" value="1" min="1" max="999" />
+                  <button class="qty-btn" onclick="changeQty(1)" type="button">+</button>
+                </div>
+                <div class="field__hint" style="margin-top:8px;"><i class="fa-solid fa-circle-info"></i> No. of bags, boxes, items, or bundles.</div>
+              </div>
+              <div class="field">
+                <label>Condition of Items <span class="required">*</span></label>
+                <select id="condition">
+                  <option value="">Select condition</option>
+                  <option>New / Unopened</option>
+                  <option>Very good — lightly used</option>
+                  <option>Good — used but fully functional</option>
+                  <option>Fair — usable with minor wear</option>
+                  <option>Mixed — varies by item</option>
+                </select>
+                <div class="field__error" id="condition-err">Please select a condition.</div>
+              </div>
+            </div>
+
+            <div class="field">
+              <label>Estimated value <span class="optional">(optional)</span></label>
+              <input type="text" id="value" placeholder="e.g. KES 2,000 or 'Not sure'" />
+              <div class="field__hint"><i class="fa-solid fa-circle-info"></i> This helps us report our total received donations accurately. A rough estimate is fine.</div>
+            </div>
+          </div>
+
+          <!-- ══ SECTION 3 — Collection / Delivery ══ -->
+          <div class="form-section" id="section-3">
+            <h2 class="section-title">How will we get it from you?</h2>
+            <p class="section-desc">
+              Tell us how you'd like to get the donation to us, and when works for you.
+              We'll confirm a time that works on both sides.
+            </p>
+
+            <div class="field">
+              <label>Delivery Method <span class="required">*</span></label>
+              <div class="card-options card-options--two">
+                <div class="option-card">
+                  <input type="radio" name="delivery" id="del-dropoff" value="I will drop it off at your address" />
+                  <label for="del-dropoff">
+                    <i class="fa-solid fa-location-dot"></i>
+                    <span class="opt-title">I'll drop it off</span>
+                    <span class="opt-sub">I'll bring it to YHA's collection point at a time that suits me.</span>
+                  </label>
+                </div>
+                <div class="option-card">
+                  <input type="radio" name="delivery" id="del-collect" value="I need YHA to collect from me" />
+                  <label for="del-collect">
+                    <i class="fa-solid fa-truck"></i>
+                    <span class="opt-title">Please collect from me</span>
+                    <span class="opt-sub">A YHA volunteer will arrange to collect from your location.</span>
+                  </label>
+                </div>
+              </div>
+              <div class="field__error" id="delivery-err">Please select a delivery method.</div>
+            </div>
+
+            <!-- Collection address info box -->
+            <div style="background:var(--g-softest);border:1.5px solid var(--g-pale);border-radius:10px;padding:22px 24px;margin-bottom:26px;">
+              <div style="font-size:.78rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--g-bright);margin-bottom:10px;">
+                <i class="fa-solid fa-location-dot" style="margin-right:6px;"></i>YHA Drop-Off Address
+              </div>
+              <div style="font-size:.93rem;color:var(--text-mid);line-height:1.7;">
+                <strong>[Address Placeholder — to be filled by YHA]</strong><br />
+                Nairobi, Kenya<br />
+                <span style="color:var(--text-soft);font-size:.85rem;">Mon – Sat &nbsp;|&nbsp; 8:00 AM – 5:00 PM</span>
+              </div>
+              <div style="margin-top:14px;font-size:.82rem;color:var(--text-soft);">
+                <i class="fa-solid fa-phone" style="color:var(--g-mid);margin-right:6px;"></i>
+                Call / WhatsApp to confirm before drop-off: <strong>+254 700 000 000 [Placeholder]</strong>
+              </div>
+            </div>
+
+            <div class="field">
+              <label>Your Location / Area <span class="required">*</span></label>
+              <input type="text" id="location" placeholder="e.g. Westlands, Nairobi or Thika Road, Ruiru" />
+              <div class="field__hint"><i class="fa-solid fa-circle-info"></i> Helps us determine if collection is possible from your area.</div>
+              <div class="field__error" id="location-err">Please enter your general location.</div>
+            </div>
+
+            <div class="field-row">
+              <div class="field">
+                <label>Preferred Date <span class="required">*</span></label>
+                <input type="date" id="pref-date" />
+                <div class="field__error" id="date-err">Please select a preferred date.</div>
+              </div>
+              <div class="field">
+                <label>Preferred Time <span class="required">*</span></label>
+                <select id="pref-time">
+                  <option value="">Select a time slot</option>
+                  <option>Morning — 8:00 AM to 11:00 AM</option>
+                  <option>Late Morning — 11:00 AM to 1:00 PM</option>
+                  <option>Afternoon — 1:00 PM to 4:00 PM</option>
+                  <option>Late Afternoon — 4:00 PM to 6:00 PM</option>
+                  <option>Flexible — any time works</option>
+                </select>
+                <div class="field__error" id="time-err">Please select a preferred time.</div>
+              </div>
+            </div>
+
+            <div class="field">
+              <label>Destination Preference <span class="optional">(optional)</span></label>
+              <p style="font-size:.82rem;color:var(--text-soft);margin-bottom:12px;">
+                Would you like your donation directed to a specific cause?
+              </p>
+              <div class="card-options" style="grid-template-columns:1fr 1fr;">
+                <div class="option-card">
+                  <input type="radio" name="destination" id="dest-any" value="No preference — wherever it's needed most" checked />
+                  <label for="dest-any">
+                    <i class="fa-solid fa-heart"></i>
+                    <span class="opt-title">No preference</span>
+                    <span class="opt-sub">Wherever it's needed most.</span>
+                  </label>
+                </div>
+                <div class="option-card">
+                  <input type="radio" name="destination" id="dest-homes" value="Children's homes" />
+                  <label for="dest-homes">
+                    <i class="fa-solid fa-house-heart"></i>
+                    <span class="opt-title">Children's Homes</span>
+                    <span class="opt-sub">Directly to a children's home we support.</span>
+                  </label>
+                </div>
+                <div class="option-card">
+                  <input type="radio" name="destination" id="dest-cleanup" value="Community clean-up teams" />
+                  <label for="dest-cleanup">
+                    <i class="fa-solid fa-leaf"></i>
+                    <span class="opt-title">Clean-Up Teams</span>
+                    <span class="opt-sub">For our environmental service volunteers.</span>
+                  </label>
+                </div>
+                <div class="option-card">
+                  <input type="radio" name="destination" id="dest-slums" value="Slum community outreach" />
+                  <label for="dest-slums">
+                    <i class="fa-solid fa-people-roof"></i>
+                    <span class="opt-title">Community Outreach</span>
+                    <span class="opt-sub">To families in informal settlements.</span>
+                  </label>
+                </div>
+              </div>
+            </div>
+
+            <div class="field">
+              <label>Any additional notes? <span class="optional">(optional)</span></label>
+              <textarea id="notes" rows="3" placeholder="Anything else we should know — storage requirements, fragile items, special instructions, or any specific requests."></textarea>
+            </div>
+          </div>
+
+          <!-- ══ SECTION 4 — Review & Confirm ══ -->
+          <div class="form-section" id="section-4">
+            <h2 class="section-title">Almost done — please review your details.</h2>
+            <p class="section-desc">
+              Make sure everything looks right before submitting. You can go back to edit anything.
+            </p>
+
+            <div class="summary-box" id="summary-donor">
+              <h4><i class="fa-solid fa-user"></i> About You</h4>
+              <div class="summary-row">
+                <span class="summary-row__key">Name</span>
+                <span class="summary-row__val" id="sum-name">—</span>
+              </div>
+              <div class="summary-row">
+                <span class="summary-row__key">Phone / WhatsApp</span>
+                <span class="summary-row__val" id="sum-phone">—</span>
+              </div>
+              <div class="summary-row">
+                <span class="summary-row__key">Email</span>
+                <span class="summary-row__val" id="sum-email">—</span>
+              </div>
+            </div>
+
+            <div class="summary-box" id="summary-donation">
+              <h4><i class="fa-solid fa-box-open"></i> Your Donation</h4>
+              <div class="summary-row">
+                <span class="summary-row__key">Category</span>
+                <span class="summary-row__val" id="sum-category">—</span>
+              </div>
+              <div class="summary-row">
+                <span class="summary-row__key">Description</span>
+                <span class="summary-row__val" id="sum-description">—</span>
+              </div>
+              <div class="summary-row">
+                <span class="summary-row__key">Quantity</span>
+                <span class="summary-row__val" id="sum-quantity">—</span>
+              </div>
+              <div class="summary-row">
+                <span class="summary-row__key">Condition</span>
+                <span class="summary-row__val" id="sum-condition">—</span>
+              </div>
+            </div>
+
+            <div class="summary-box" id="summary-collection">
+              <h4><i class="fa-solid fa-truck"></i> Collection Details</h4>
+              <div class="summary-row">
+                <span class="summary-row__key">Method</span>
+                <span class="summary-row__val" id="sum-delivery">—</span>
+              </div>
+              <div class="summary-row">
+                <span class="summary-row__key">Your Location</span>
+                <span class="summary-row__val" id="sum-location">—</span>
+              </div>
+              <div class="summary-row">
+                <span class="summary-row__key">Date &amp; Time</span>
+                <span class="summary-row__val" id="sum-datetime">—</span>
+              </div>
+              <div class="summary-row">
+                <span class="summary-row__key">Directed To</span>
+                <span class="summary-row__val" id="sum-destination">—</span>
+              </div>
+            </div>
+
+            <div style="background:var(--g-softest);border-radius:10px;padding:20px 22px;display:flex;align-items:flex-start;gap:14px;margin-top:8px;">
+              <i class="fa-solid fa-shield-halved" style="color:var(--g-bright);margin-top:3px;font-size:1rem;flex-shrink:0;"></i>
+              <p style="font-size:.88rem;color:var(--text-soft);line-height:1.7;">
+                By submitting, you agree to be contacted by a YHA volunteer to coordinate your donation.
+                Your information is used solely for this purpose and will not be shared or sold.
+                Anonymous submissions are accepted and fully respected.
+              </p>
+            </div>
+          </div>
+
+          <!-- ══ SUCCESS ══ -->
+          <div class="success-screen" id="success-screen">
+            <div class="success-icon"><i class="fa-solid fa-check"></i></div>
+            <h2 class="success-title">Thank You So Much.</h2>
+            <p class="success-text">
+              Your donation form has been submitted. A YHA volunteer will reach out to you
+              within <strong>24 hours</strong> to confirm your details and arrange a time.
+              Your generosity makes a real difference.
+            </p>
+            <div class="success-ref">
+              Reference: <span id="ref-number">YHA-KIND-000000</span>
+            </div>
+            <div class="success-btns">
+              <a href="index.html" class="btn btn--primary">
+                <i class="fa-solid fa-house"></i> Back to Home
+              </a>
+              <a href="donate.html" class="btn btn--ghost">
+                <i class="fa-solid fa-heart"></i> Also Donate Money
+              </a>
+            </div>
+          </div>
+
+          <!-- Navigation Buttons -->
+          <div class="form-nav" id="form-nav">
+            <button class="btn btn--ghost" id="btn-back" onclick="goBack()" style="display:none;">
+              <i class="fa-solid fa-arrow-left"></i> Back
+            </button>
+            <button class="btn btn--primary btn--lg" id="btn-next" onclick="goNext()">
+              Continue <i class="fa-solid fa-arrow-right"></i>
+            </button>
+          </div>
+
+        </div><!-- /.form-body -->
+      </div><!-- /main column -->
+
+      <!-- SIDEBAR -->
+      <aside class="sidebar">
+        <div class="sidebar-card">
+          <h4><i class="fa-solid fa-shield-halved"></i> Why Give In Kind?</h4>
+          <div class="trust-item"><i class="fa-solid fa-check"></i> 100% of your donation reaches the community — no processing fees, no deductions.</div>
+          <div class="trust-item"><i class="fa-solid fa-check"></i> Items go directly to children's homes, clean-up teams, and vulnerable families.</div>
+          <div class="trust-item"><i class="fa-solid fa-check"></i> We send you a photo acknowledgement after delivery so you can see where it went.</div>
+          <div class="trust-item"><i class="fa-solid fa-check"></i> Anonymous donations fully accepted — no questions asked.</div>
+        </div>
+
+        <div class="sidebar-card">
+          <h4><i class="fa-solid fa-star"></i> Most Needed Right Now</h4>
+          <div class="needed-item"><i class="fa-solid fa-bowl-rice"></i> Dry food staples (rice, maize flour, beans)</div>
+          <div class="needed-item"><i class="fa-solid fa-shirt"></i> Children's clothing — sizes 4–14 years</div>
+          <div class="needed-item"><i class="fa-solid fa-book"></i> Exercise books &amp; pens</div>
+          <div class="needed-item"><i class="fa-solid fa-shoe-prints"></i> School shoes</div>
+          <div class="needed-item"><i class="fa-solid fa-bed"></i> Blankets &amp; bedding</div>
+          <div class="needed-item"><i class="fa-solid fa-soap"></i> Soap &amp; hygiene products</div>
+        </div>
+
+        <div class="sidebar-card">
+          <h4><i class="fa-solid fa-phone"></i> Need Help?</h4>
+          <p style="font-size:.88rem;color:var(--text-soft);margin-bottom:14px;line-height:1.7;">
+            Questions about your donation? Reach us directly:
+          </p>
+          <div class="trust-item"><i class="fa-brands fa-whatsapp"></i> WhatsApp: +254 700 000 000</div>
+          <div class="trust-item"><i class="fa-solid fa-envelope"></i> donate@younghumanitarians.org</div>
+        </div>
+      </aside>
+
+    </div><!-- /.page-inner -->
+  </div><!-- /.page -->
+
+  <script>
+    /* ══════════════════════════════════════════════
+       YHA In-Kind Donation Form — JavaScript
+    ══════════════════════════════════════════════ */
+
+    let currentSection = 1;
+    let isAnonymous = false;
+    const totalSections = 4;
+
+    /* ── ANON TOGGLE ─────────────────────────────── */
+    function toggleAnon() {
+      isAnonymous = !isAnonymous;
+      const toggle  = document.getElementById('anon-toggle');
+      const fields  = document.getElementById('personal-fields');
+      toggle.classList.toggle('on', isAnonymous);
+      fields.style.display = isAnonymous ? 'none' : 'block';
+    }
+
+    /* ── QUANTITY STEPPER ────────────────────────── */
+    function changeQty(delta) {
+      const input = document.getElementById('quantity');
+      let val = parseInt(input.value) || 1;
+      val = Math.max(1, Math.min(999, val + delta));
+      input.value = val;
+    }
+
+    /* ── PROGRESS DOTS ───────────────────────────── */
+    function updateProgress(section) {
+      for (let i = 1; i <= totalSections; i++) {
+        const dot = document.getElementById('step-dot-' + i);
+        dot.classList.remove('active', 'done');
+        if (i < section) dot.classList.add('done');
+        if (i === section) dot.classList.add('active');
+        // Swap text for done steps
+        const dotEl = dot.querySelector('.progress-step__dot');
+        dotEl.innerHTML = i < section ? '<i class="fa-solid fa-check" style="font-size:.7rem;"></i>' : i;
+      }
+    }
+
+    /* ── VALIDATION ──────────────────────────────── */
+    function clearErrors() {
+      document.querySelectorAll('.field__error.show').forEach(e => e.classList.remove('show'));
+      document.querySelectorAll('.error').forEach(e => e.classList.remove('error'));
+    }
+
+    function showError(fieldId, errorId) {
+      const field = document.getElementById(fieldId);
+      const err   = document.getElementById(errorId);
+      if (field) field.classList.add('error');
+      if (err)   err.classList.add('show');
+    }
+
+    function validateSection(section) {
+      clearErrors();
+      let valid = true;
+
+      if (section === 1 && !isAnonymous) {
+        if (!document.getElementById('fname').value.trim()) {
+          showError('fname', 'fname-err'); valid = false;
+        }
+        if (!document.getElementById('phone').value.trim()) {
+          showError('phone', 'phone-err'); valid = false;
+        }
+      }
+
+      if (section === 2) {
+        const cat = document.querySelector('input[name="category"]:checked');
+        if (!cat) {
+          document.getElementById('category-err').classList.add('show'); valid = false;
+        }
+        if (!document.getElementById('description').value.trim()) {
+          showError('description', 'description-err'); valid = false;
+        }
+        if (!document.getElementById('condition').value) {
+          showError('condition', 'condition-err'); valid = false;
+        }
+      }
+
+      if (section === 3) {
+        const del = document.querySelector('input[name="delivery"]:checked');
+        if (!del) {
+          document.getElementById('delivery-err').classList.add('show'); valid = false;
+        }
+        if (!document.getElementById('location').value.trim()) {
+          showError('location', 'location-err'); valid = false;
+        }
+        if (!document.getElementById('pref-date').value) {
+          showError('pref-date', 'date-err'); valid = false;
+        }
+        if (!document.getElementById('pref-time').value) {
+          showError('pref-time', 'time-err'); valid = false;
+        }
+      }
+
+      return valid;
+    }
+
+    /* ── POPULATE SUMMARY ────────────────────────── */
+    function populateSummary() {
+      const fname    = document.getElementById('fname').value.trim();
+      const lname    = document.getElementById('lname').value.trim();
+      const phone    = document.getElementById('phone').value.trim();
+      const email    = document.getElementById('email').value.trim();
+      const category = document.querySelector('input[name="category"]:checked');
+      const desc     = document.getElementById('description').value.trim();
+      const qty      = document.getElementById('quantity').value;
+      const cond     = document.getElementById('condition').value;
+      const delivery = document.querySelector('input[name="delivery"]:checked');
+      const location = document.getElementById('location').value.trim();
+      const date     = document.getElementById('pref-date').value;
+      const time     = document.getElementById('pref-time').value;
+      const dest     = document.querySelector('input[name="destination"]:checked');
+
+      document.getElementById('sum-name').textContent =
+        isAnonymous ? 'Anonymous' : (fname + (lname ? ' ' + lname : '')) || '—';
+      document.getElementById('sum-phone').textContent =
+        isAnonymous ? 'Not provided' : (phone || '—');
+      document.getElementById('sum-email').textContent =
+        isAnonymous ? 'Not provided' : (email || 'Not provided');
+
+      document.getElementById('sum-category').textContent    = category ? category.value : '—';
+      document.getElementById('sum-description').textContent = desc || '—';
+      document.getElementById('sum-quantity').textContent    = qty + ' item(s) / bundle(s)';
+      document.getElementById('sum-condition').textContent   = cond || '—';
+
+      document.getElementById('sum-delivery').textContent   = delivery ? delivery.value : '—';
+      document.getElementById('sum-location').textContent   = location || '—';
+
+      let dateStr = '—';
+      if (date) {
+        const d = new Date(date);
+        dateStr = d.toLocaleDateString('en-KE', { weekday:'long', year:'numeric', month:'long', day:'numeric' });
+      }
+      document.getElementById('sum-datetime').textContent = dateStr + (time ? ' — ' + time : '');
+      document.getElementById('sum-destination').textContent = dest ? dest.value : '—';
+    }
+
+    /* ── NAVIGATION ──────────────────────────────── */
+    function goNext() {
+      if (!validateSection(currentSection)) {
+        // Scroll to first error
+        const firstErr = document.querySelector('.field__error.show, .error');
+        if (firstErr) firstErr.scrollIntoView({ behavior:'smooth', block:'center' });
+        return;
+      }
+
+      if (currentSection === totalSections) {
+        submitForm();
+        return;
+      }
+
+      document.getElementById('section-' + currentSection).classList.remove('active');
+      currentSection++;
+      document.getElementById('section-' + currentSection).classList.add('active');
+      updateProgress(currentSection);
+
+      // Update buttons
+      document.getElementById('btn-back').style.display = currentSection > 1 ? 'inline-flex' : 'none';
+      const nextBtn = document.getElementById('btn-next');
+      nextBtn.innerHTML = currentSection === totalSections
+        ? '<i class="fa-solid fa-paper-plane"></i> Submit Donation'
+        : 'Continue <i class="fa-solid fa-arrow-right"></i>';
+
+      if (currentSection === totalSections) populateSummary();
+
+      window.scrollTo({ top: 0, behavior:'smooth' });
+    }
+
+    function goBack() {
+      if (currentSection === 1) return;
+      document.getElementById('section-' + currentSection).classList.remove('active');
+      currentSection--;
+      document.getElementById('section-' + currentSection).classList.add('active');
+      updateProgress(currentSection);
+
+      document.getElementById('btn-back').style.display = currentSection > 1 ? 'inline-flex' : 'none';
+      const nextBtn = document.getElementById('btn-next');
+      nextBtn.innerHTML = 'Continue <i class="fa-solid fa-arrow-right"></i>';
+
+      window.scrollTo({ top: 0, behavior:'smooth' });
+    }
+
+    /* ── SUBMIT ──────────────────────────────────── */
+    function submitForm() {
+      // Generate reference number
+      const ref = 'YHA-KIND-' + Date.now().toString().slice(-6);
+      document.getElementById('ref-number').textContent = ref;
+
+      // Hide form sections and nav, show success
+      for (let i = 1; i <= totalSections; i++) {
+        const s = document.getElementById('section-' + i);
+        if (s) s.classList.remove('active');
+      }
+      document.getElementById('form-nav').style.display = 'none';
+      document.getElementById('success-screen').classList.add('show');
+
+      // Hide progress bar
+      document.querySelector('.progress-bar').style.display = 'none';
+
+      window.scrollTo({ top: 0, behavior:'smooth' });
+    }
+
+    /* ── SET MIN DATE ────────────────────────────── */
+    window.addEventListener('DOMContentLoaded', () => {
+      const dateInput = document.getElementById('pref-date');
+      if (dateInput) {
+        const tomorrow = new Date();
+        tomorrow.setDate(tomorrow.getDate() + 1);
+        dateInput.min = tomorrow.toISOString().split('T')[0];
+      }
+    });
+  </script>
+
+</body>
+</html>
